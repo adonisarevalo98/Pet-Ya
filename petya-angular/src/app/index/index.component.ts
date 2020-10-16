@@ -11,5 +11,12 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  nombre:string;
 
+  iniciarsesion(){
+    
+    
+    
+    //this.authService.SignUp(this.nombre,sfsf);
+  }
 }
