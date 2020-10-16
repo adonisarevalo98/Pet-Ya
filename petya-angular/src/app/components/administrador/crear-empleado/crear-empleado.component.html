@@ -1,1 +1,47 @@
-<p>crear-empleado works!</p>
+
+
+<div class="card mt-5">
+    <div class="card-body">
+        <h3>Datos de empleado</h3>
+        <div >
+
+            <!-- TO UPDATE -->
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="Nombres" 
+                    [(ngModel)]="empleado.nombres" placeholder="Nombres">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="Apellidos" 
+                    [(ngModel)]="empleado.apellidos" placeholder="Apellidos">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="Correo" 
+                    [(ngModel)]="empleado.correo" placeholder="Correo">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Teléfono" 
+                    [(ngModel)]="empleado.telefono" placeholder="Teléfono (0000-0000)">
+            </div>
+            <div class="form-group">
+                <label for="inputState">Categoria</label>
+                <select id="inputState" class="form-control" [(ngModel)]="empleado.categoria">
+                  <option selected>E</option>
+                  <option>A</option>
+                </select>
+            </div>
+            
+            
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="insertEmpleado()" >
+                    <i class="fas fa-plus-circle"></i> Registrar
+                </button>
+                <button class="btn btn-secondary" type="reset" >
+                    <i class="fas fa-sync-alt"></i> Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
