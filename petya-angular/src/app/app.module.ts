@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -62,7 +63,7 @@ import { EditarClienteComponent } from './components/clientes/editar-cliente/edi
     AngularFireDatabaseModule,
     FormsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule, BrowserAnimationsModule
    
   ],
   providers: [AuthGuard],

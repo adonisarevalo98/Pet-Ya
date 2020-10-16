@@ -45,22 +45,27 @@ export class AuthService {
 
   // Iniciar sesión con correo electrónico / contraseña
   SignIn(email, password) {
-  let conta=0;
+  
   let categoria='';
     this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe( 
       (data: [any]) =>{ 
     data.forEach(element =>{
-      if(element.correo == email){
-        conta =1;
+      if(element.correo == email){ 
         categoria = element.categoria;
-      }else{
-        categoria = 'A';
       }
-      
     });
-    console.log(conta);
     console.log(categoria);
-    if(categoria=='E'){
+    if(categoria=='A'){
+      this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['administrador']);
+        });
+        this.SetUserData(result.user);
+      }).catch((error) => {
+       // window.alert("Por favor revisar credenciales")
+         window.alert(error.message)
+      })
+    }else if(categoria=='E'){
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['empleado']);
@@ -70,7 +75,7 @@ export class AuthService {
        // window.alert("Por favor revisar credenciales")
          window.alert(error.message)
       })
-    }else if(categoria=='A'){
+    }else{
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['index']);

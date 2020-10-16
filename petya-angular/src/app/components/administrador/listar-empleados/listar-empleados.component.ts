@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-
-@Component({
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { Identifiers } from '@angular/compiler';
+import { Registro_Empleados } from '../../../interfaces/registro-empleados'
+import { EmpleadoService} from '../../../services/empleado.service'
+import { EmailValidator } from '@angular/forms';
+@Component({ 
   selector: 'app-listar-empleados',
   templateUrl: './listar-empleados.component.html',
   styleUrls: ['./listar-empleados.component.css']
 })
 export class ListarEmpleadosComponent implements OnInit {
+  API_ENDPOINT = 'http://localhost:8000/api';
+  lista_empleados: Registro_Empleados[];
+  constructor(  private empleadoService: EmpleadoService,  private httpClient: HttpClient
+    ) { 
 
-  constructor() { }
+      this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe( 
+        (data: Registro_Empleados[]) =>{ 
+    this.lista_empleados = data;
+    console.log(this.lista_empleados);
+    });
+    
+
+    }
 
   ngOnInit(): void {
+   
   }
-
 }
