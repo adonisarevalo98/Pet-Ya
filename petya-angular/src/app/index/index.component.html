@@ -15,7 +15,7 @@
     <!--INICIO MENU -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
-            <img src="img/logo.png" width="170" height="70"loading="lazy">
+            <img src="/img/logo.png" width="170" height="70"loading="lazy">
           </a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +35,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#acercade">Acerca de</a>
                 </li> 
-                <li class="nav-item">
+                <li class="nav-item"*ngIf="!authService.userData" >
                     <a class="nav-link" routerLink="/sign-in" >Iniciar sesión</a>
-                </li> 
+                </li>
+                    <li class="nav-item"  *ngIf="authService.userData as user">
+                      <a class="nav-link" (click)="authService.SignOut()">
+                        <i class="fas fa-sign-out-alt"></i>Log out
+                      </a>
+                    </li> 
             </ul>
         </div>
     </nav>
@@ -108,7 +113,7 @@
                             <div class="row">
                                 <div class="col-lg-5 mx-auto">
                                     <div class="cabecera">
-                                        <img width="100px" height="100px" src="img/icons/clinic-512.png" alt="img1">                                        
+                                        <img width="100px" height="100px" src="/img/icons/clinic-512.png" alt="img1">                                        
                                     </div>
                                     <div class="cuerpo">
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ex cum corporis nihil at 
@@ -123,7 +128,7 @@
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-5 mx-auto">
                                     <div class="cabecera">
-                                        <img width="100px" height="100px" src="img/icons/doctor-suitecase-512.png" alt="img1">                                        
+                                        <img width="100px" height="100px" src="/img/icons/doctor-suitecase-512.png" alt="img1">                                        
                                     </div>
                                     <div class="cuerpo">
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ex cum corporis nihil at 

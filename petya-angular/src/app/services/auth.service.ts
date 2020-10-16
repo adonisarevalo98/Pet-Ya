@@ -4,20 +4,30 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { Registro_Clientes } from '../interfaces/registro-clientes';
+import { element } from 'protractor';
+import { EmailValidator } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AuthService {
-  userData: any; // Guardar datos de usuario registrados
 
+export class AuthService {
+  userData; // Guardar datos de usuario registrados
+  API_ENDPOINT = 'http://localhost:8000/api';
+  lista_clientes;
+  contador=0;
+  
   constructor(
     public afs: AngularFirestore,   //  Inyectar Servicio Firestore
     public afAuth: AngularFireAuth, // Inyectar el servicio de autenticación de Firebase
     public router: Router,  
-    public ngZone: NgZone // Servicio NgZone para eliminar la advertencia de alcance externo
-  ) {    
+    public ngZone: NgZone, // Servicio NgZone para eliminar la advertencia de alcance externo
+    private httpClient: HttpClient
+    
+    ) {    
 
     /* Guardar datos de usuario en almacenamiento local cuando
     iniciado sesión y configurando nulo al cerrar sesión*/
@@ -35,25 +45,74 @@ export class AuthService {
 
   // Iniciar sesión con correo electrónico / contraseña
   SignIn(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
+  let conta=0;
+  let categoria='';
+    this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe( 
+      (data: [any]) =>{ 
+    data.forEach(element =>{
+      if(element.correo == email){
+        conta =1;
+        categoria = element.categoria;
+      }else{
+        categoria = 'A';
+      }
+      
+    });
+    console.log(conta);
+    console.log(categoria);
+    if(categoria=='E'){
+      this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['empleado']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
        // window.alert("Por favor revisar credenciales")
          window.alert(error.message)
       })
+    }else if(categoria=='A'){
+      this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['index']);
+        });
+        this.SetUserData(result.user);
+      }).catch((error) => {
+       // window.alert("Por favor revisar credenciales")
+         window.alert(error.message)
+      })
+    }   
+  
+  
+  });
+     
+     
   }
 
   // Regístrese con correo electrónico / contraseña
   SignUp(email, password) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
+    let reg_client: Registro_Clientes ={
+    nombre: null,
+    correo: email,
+    foto_perfil: null,
+    telefono: null,
+    passwd:null,
+    categoria: null
+
+    };
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+ 
+     this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Llame a la función SendVerificaitonMail () cuando un nuevo usuario firme
         y vuelve la funcion*/
         this.SendVerificationMail();
         this.SetUserData(result.user);
+    this.httpClient.post(this.API_ENDPOINT + '/petya-clientes',reg_client, {headers: headers}).subscribe( (data) =>{ 
+      
+      console.log(data);
+      });; 
+      
+  
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -83,28 +142,18 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null && user.emailVerified !== false) ? true : true;
   }
-
-// Iniciar sesión usando Facebook
-  FacebookAuth() {
-    return this.AuthLogin(new auth.FacebookAuthProvider());
-  }
-
-  // Iniciar sesión usando Twitter
-  TwitterAuth() {
-    return this.AuthLogin(new auth.TwitterAuthProvider());
-  }
-
   // Iniciar sesión usando Facebook Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
 
   // Lógica de autenticación para ejecutar cualquier proveedor de autenticación  
+  
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['empleado']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -139,6 +188,6 @@ export class AuthService {
     })
   }
 
-
+  //
 
 }

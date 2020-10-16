@@ -8,7 +8,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthGuard } from "./guard/auth.guard";
-
+import { EmpleadoComponent } from './components/empleado/empleado.component'
+import { AdministradorComponent } from './components/administrador/administrador.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'empleado', component: EmpleadoComponent },
+  { path: 'administrador', component: AdministradorComponent },
 ];
 
 

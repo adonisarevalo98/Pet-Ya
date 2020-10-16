@@ -15,14 +15,18 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./guard/auth.guard";
 import { ToastrModule } from 'ngx-toastr';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { EmpleadoComponent } from './components/empleado/empleado.component';
+import { EmpleadoHorariosComponent } from './components/empleado/empleado-horarios/empleado-horarios.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { CrearEmpleadoComponent } from './components/administrador/crear-empleado/crear-empleado.component';
+import { ListarEmpleadosComponent } from './components/administrador/listar-empleados/listar-empleados.component'
 
 
 @NgModule({
@@ -35,6 +39,11 @@ import { IndexComponent } from './index/index.component';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    EmpleadoComponent,
+    EmpleadoHorariosComponent,
+    AdministradorComponent,
+    CrearEmpleadoComponent,
+    ListarEmpleadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +54,7 @@ import { IndexComponent } from './index/index.component';
     AngularFireDatabaseModule,
     FormsModule,
     ToastrModule.forRoot(),
+    HttpClientModule
    
   ],
   providers: [AuthGuard],

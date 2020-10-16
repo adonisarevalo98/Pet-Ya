@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 //Declarando controladores
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FormularioCitaController;
-
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\HorarioController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +26,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //***********ruta para acceder al backend
 
 //ruta a metodos del controller cliente
-Route::resource('vetya-clientes', ClienteController::class);
+Route::resource('petya-clientes', ClienteController::class);
 //ruta a metodos del controller cliente
-Route::resource('vetya-formcita', FormularioCitaController::class);
+Route::resource('petya-formcita', FormularioCitaController::class);
+//ruta a metodos del controller empleado
+Route::resource('petya-empleados', EmpleadoController::class);
+//ruta a metodos del controller horario
+Route::resource('petya-horarios', HorarioController::class);

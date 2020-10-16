@@ -1,13 +1,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAdu7bO_MzslesalJrDdgYyK72STk8bwLE",
-    authDomain: "parcial2-a8c56.firebaseapp.com",
-    databaseURL: "https://parcial2-a8c56.firebaseio.com",
-    projectId: "parcial2-a8c56",
-    storageBucket: "parcial2-a8c56.appspot.com",
-    messagingSenderId: "567308961882",
-    appId: "1:567308961882:web:e5e7adf8f47ef3a0683063",
-    measurementId: "G-5NSF5VY2E6"
+    apiKey: "AIzaSyDIaStGFLilEn4GROFsIkpWU5WxR70COTA",
+  authDomain: "petya-966de.firebaseapp.com",
+  databaseURL: "https://petya-966de.firebaseio.com",
+  projectId: "petya-966de",
+  storageBucket: "petya-966de.appspot.com",
+  messagingSenderId: "386598758269",
+  appId: "1:386598758269:web:2946b04ba66dbfd7c64e14",
+  measurementId: "G-5MNS4PE0SL"
   }
 };

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-10-2020 a las 02:33:12
--- Versión del servidor: 5.7.31
--- Versión de PHP: 7.3.21
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-10-2020 a las 19:45:19
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,15 +28,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `asuetos`
 --
 
-DROP TABLE IF EXISTS `asuetos`;
-CREATE TABLE IF NOT EXISTS `asuetos` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `asuetos` (
+  `id` int(10) UNSIGNED NOT NULL,
   `fecha` date NOT NULL,
   `empleado_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `empleado_id` (`empleado_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -44,9 +42,8 @@ CREATE TABLE IF NOT EXISTS `asuetos` (
 -- Estructura de tabla para la tabla `citas`
 --
 
-DROP TABLE IF EXISTS `citas`;
-CREATE TABLE IF NOT EXISTS `citas` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `citas` (
+  `id` int(10) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `nombre_mascota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_cita` date NOT NULL,
@@ -57,10 +54,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `id_empleado` int(11) NOT NULL,
   `id_formulario` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_formulario` (`id_formulario`),
-  KEY `id_empleado` (`id_empleado`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -69,19 +63,25 @@ CREATE TABLE IF NOT EXISTS `citas` (
 -- Estructura de tabla para la tabla `clientes`
 --
 
-DROP TABLE IF EXISTS `clientes`;
-CREATE TABLE IF NOT EXISTS `clientes` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `clientes` (
+  `id` int(10) NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto_perfil` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categoria` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto_perfil` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categoria` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nombre`, `correo`, `foto_perfil`, `telefono`, `password`, `categoria`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'jk@hg.com', NULL, NULL, NULL, NULL, '2020-10-16 02:32:44', '2020-10-16 02:32:44'),
+(3, NULL, 'ab@ab.com', NULL, NULL, NULL, NULL, '2020-10-16 06:24:18', '2020-10-16 06:24:18');
 
 -- --------------------------------------------------------
 
@@ -89,9 +89,8 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 -- Estructura de tabla para la tabla `diagnosticos`
 --
 
-DROP TABLE IF EXISTS `diagnosticos`;
-CREATE TABLE IF NOT EXISTS `diagnosticos` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `diagnosticos` (
+  `id` int(10) UNSIGNED NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `nombre_mascota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `especie` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -109,9 +108,7 @@ CREATE TABLE IF NOT EXISTS `diagnosticos` (
   `tratamiento` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `empleado_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `empleado_id` (`empleado_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -120,9 +117,8 @@ CREATE TABLE IF NOT EXISTS `diagnosticos` (
 -- Estructura de tabla para la tabla `empleados`
 --
 
-DROP TABLE IF EXISTS `empleados`;
-CREATE TABLE IF NOT EXISTS `empleados` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleados` (
+  `id` int(10) NOT NULL,
   `nombres` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellidos` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -131,9 +127,16 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `categoria` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`id`, `nombres`, `apellidos`, `correo`, `foto_perfil`, `telefono`, `password`, `categoria`, `created_at`, `updated_at`) VALUES
+(1, 'adonis', 'arevalo', 'adonisarevalo503@gmail.com', '', '2345-6789', '', 'E', NULL, NULL),
+(2, 'jose', 'martinez', 'ab@ab.com', '', '2145-6798', '', 'E', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,9 +144,8 @@ CREATE TABLE IF NOT EXISTS `empleados` (
 -- Estructura de tabla para la tabla `formulario_citas`
 --
 
-DROP TABLE IF EXISTS `formulario_citas`;
-CREATE TABLE IF NOT EXISTS `formulario_citas` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `formulario_citas` (
+  `id` int(10) NOT NULL,
   `fecha_cita` date NOT NULL,
   `hora` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nombre_mascota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -161,10 +163,7 @@ CREATE TABLE IF NOT EXISTS `formulario_citas` (
   `temperatura` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `cliente_id` (`cliente_id`),
-  KEY `cliente_id_2` (`cliente_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -173,18 +172,23 @@ CREATE TABLE IF NOT EXISTS `formulario_citas` (
 -- Estructura de tabla para la tabla `horarios`
 --
 
-DROP TABLE IF EXISTS `horarios`;
-CREATE TABLE IF NOT EXISTS `horarios` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `horarios` (
+  `id` int(10) UNSIGNED NOT NULL,
   `dia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hora_inicio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hora_fin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `empleado_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `empleado_id` (`empleado_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `horarios`
+--
+
+INSERT INTO `horarios` (`id`, `dia`, `hora_inicio`, `hora_fin`, `empleado_id`, `created_at`, `updated_at`) VALUES
+(1, 'Lunes', '8:00', '9:00', 1, NULL, NULL),
+(2, 'Lunes', '9:00', '10:00', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -192,13 +196,11 @@ CREATE TABLE IF NOT EXISTS `horarios` (
 -- Estructura de tabla para la tabla `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `migrations`
@@ -212,6 +214,117 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2020_10_14_021019_create_diagnosticos_table', 5),
 (7, '2020_10_14_022353_create_horarios_table', 6),
 (8, '2020_10_14_022916_create_asuetos_table', 7);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `asuetos`
+--
+ALTER TABLE `asuetos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empleado_id` (`empleado_id`);
+
+--
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_formulario` (`id_formulario`),
+  ADD KEY `id_empleado` (`id_empleado`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `diagnosticos`
+--
+ALTER TABLE `diagnosticos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empleado_id` (`empleado_id`);
+
+--
+-- Indices de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `formulario_citas`
+--
+ALTER TABLE `formulario_citas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`),
+  ADD KEY `cliente_id_2` (`cliente_id`);
+
+--
+-- Indices de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empleado_id` (`empleado_id`);
+
+--
+-- Indices de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `asuetos`
+--
+ALTER TABLE `asuetos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `diagnosticos`
+--
+ALTER TABLE `diagnosticos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `formulario_citas`
+--
+ALTER TABLE `formulario_citas`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
