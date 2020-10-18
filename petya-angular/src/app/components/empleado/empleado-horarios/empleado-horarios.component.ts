@@ -28,18 +28,11 @@ export class EmpleadoHorariosComponent implements OnInit {
       (data: Registro_Empleados) => {
         this.lista_empleados.push(data) ; 
       
-        this.recorrer();
+       
       })
      
   }
 
-  recorrer(){
-    this.lista_empleados.forEach(element => {
-      
-      this.horarios_user=element;
-      console.log(element.correo)
-    })
-    console.log(this.horarios_user)
-  }
+
 
 }

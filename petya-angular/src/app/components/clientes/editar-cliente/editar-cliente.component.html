@@ -1,1 +1,21 @@
-<p>editar-cliente works!</p>
+<div class="container">
+    <br>
+    <h2>Actualizar mis datos</h2>
+<form>
+    <br>
+    <div class="form-group">                                                        
+        <input type="text" [(ngModel)]="edit.nombre"  name="nombre" id="" class="form-control inp input-sm mr-1" placeholder="Nombres">                                                                              
+                            
+    </div>
+    <div class="form-group">                      
+      <input type="text" [(ngModel)]="edit.correo" readonly name="correo" id="" class="form-control inp" placeholder="Correo Electronico:">                      
+    </div>
+    <div class="form-group">                      
+        <input type="password"  name="contra" id="" class="form-control inp" placeholder="Contraseña">                      
+    </div>
+    <div class="form-group">                      
+        <input type="text" [(ngModel)]="edit.telefono"  name="telefono" id="" class="form-control inp" placeholder="Telefono">                      
+    </div>
+    <button type="submit" (click)="actualizarcliente()" class="btn btn-primary">Actualizar</button>
+  </form>
+</div>

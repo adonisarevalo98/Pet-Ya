@@ -8,35 +8,70 @@ import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'
 import { Registro_Clientes } from '../interfaces/registro-clientes';
 import { element } from 'protractor';
 import { EmailValidator } from '@angular/forms';
-
+import {ClienteService} from '../services/cliente.service';
+import { Cliente } from "../interfaces/cliente";
 @Injectable({
   providedIn: 'root'
 })
 
 
 export class AuthService {
-  userData; // Guardar datos de usuario registrados
+   // Guardar datos de usuario registrados
+
   API_ENDPOINT = 'http://localhost:8000/api';
   lista_clientes;
   contador=0;
+  allclient=null;
+  userData: any = {
+    uid: null,
+    email: null,
+    displayName:null,
+    photoURL: null,
+    emailVerified: null
+  }
+
   
   constructor(
     public afs: AngularFirestore,   //  Inyectar Servicio Firestore
     public afAuth: AngularFireAuth, // Inyectar el servicio de autenticación de Firebase
     public router: Router,  
     public ngZone: NgZone, // Servicio NgZone para eliminar la advertencia de alcance externo
-    private httpClient: HttpClient
-    
+    private httpClient: HttpClient,
+    private clienteServices:ClienteService,
+
     ) {    
 
     /* Guardar datos de usuario en almacenamiento local cuando
     iniciado sesión y configurando nulo al cerrar sesión*/
+    
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        this.clienteServices.select().subscribe((data: Cliente[]) => {
+          //asignando el registros al arreglo 'clientes'
+          this.allclient = data;
+          if (this.userData.email != null) {
+            let id;
+            for (let i = 0; i < this.allclient.length; i++) {
+              if (this.userData.email == this.allclient[i].correo) {
+                console.log(this.allclient[i]);
+                id = this.allclient[i].id;
+                break;
+              }
+            }
+            console.log(id);
+          localStorage.setItem('user', JSON.stringify(id));
+          JSON.parse(localStorage.getItem('user'));
+          } else {
+          }
+        }, (error) => {
+          console.log(error);
+        });
+        //console.log(this.datosusuario);
+       // localStorage.setItem('user', JSON.stringify(this.userData));
+        //JSON.parse(localStorage.getItem('user'));
       } else {
+        this.userData=null;
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
@@ -52,7 +87,9 @@ export class AuthService {
     data.forEach(element =>{
       if(element.correo == email){ 
         categoria = element.categoria;
-      }
+      }//else if(element.correo==''){
+       // categoria='C';
+     // }
     });
     console.log(categoria);
     if(categoria=='A'){
@@ -75,17 +112,21 @@ export class AuthService {
        // window.alert("Por favor revisar credenciales")
          window.alert(error.message)
       })
-    }else{
+    }else {
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['index']);
         });
         this.SetUserData(result.user);
+        console.log(result.user);
       }).catch((error) => {
        // window.alert("Por favor revisar credenciales")
          window.alert(error.message)
       })
+
     }   
+
+    
   
   
   });
@@ -95,29 +136,13 @@ export class AuthService {
 
   // Regístrese con correo electrónico / contraseña
   SignUp(email, password) {
-    let reg_client: Registro_Clientes ={
-    nombre: null,
-    correo: email,
-    foto_perfil: null,
-    telefono: null,
-    passwd:null,
-    categoria: null
 
-    };
-    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
- 
      this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Llame a la función SendVerificaitonMail () cuando un nuevo usuario firme
         y vuelve la funcion*/
         this.SendVerificationMail();
-        this.SetUserData(result.user);
-    this.httpClient.post(this.API_ENDPOINT + '/petya-clientes',reg_client, {headers: headers}).subscribe( (data) =>{ 
-      
-      console.log(data);
-      });; 
-      
-  
+        this.SetUserData(result.user); 
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -143,9 +168,11 @@ export class AuthService {
 
   // Devuelve verdadero cuando el usuario está conectado y 
   // el correo electrónico está verificado
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : true;
+   get isLoggedIn(): boolean {
+    const user= this.userData;
+    return (user !== null)? true:false;
+    //const user = JSON.parse(localStorage.getItem('user'));
+    //return (user !== null && user.emailVerified !== false) ? true : true;
   }
   // Iniciar sesión usando Facebook Google
   GoogleAuth() {
@@ -158,7 +185,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['empleado']);
+          this.router.navigate(['index']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -190,6 +217,7 @@ export class AuthService {
       localStorage.setItem('user', null);
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
+      this.userData=null;
     })
   }
 

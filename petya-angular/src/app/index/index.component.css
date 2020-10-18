@@ -9,7 +9,7 @@ html{
 
 @font-face{
     font-family: 'freestyle-script';
-    src: url(/fonts/FREESCPT.TTF);
+    src: url(../../assets/fonts/FREESCPT.TTF);
 }
 
 .navbar{    
@@ -30,7 +30,7 @@ html{
 }
 
 .fondo{
-    background-image: url(/img/fotos/filename.png);
+    background-image: url(../../assets/img/fotos/filename.png);
     background-size: contain;    
     background-repeat: no-repeat;
     background-position: right;
@@ -60,7 +60,7 @@ html{
 }
 
 .registro{
-    background-image: url(/img/fotos/Foto1.jpg);
+    background-image: url(../../assets/img/fotos/Foto1.jpg);
     background-position: 5% 50%;
     background-size: cover;
     background-repeat: no-repeat;
