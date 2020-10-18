@@ -15,4 +15,19 @@ export class EmpleadoService {
      
      return this.httpClient.post(this.API_ENDPOINT+'/petya-empleados', empleado, {headers:headers});
     }
+
+   
+    select(){ 
+      return this.httpClient.get(this.API_ENDPOINT+"/petya-empleados");
+    }
+  
+    put(empleado){
+      const headerrs = new HttpHeaders({'Content-Type':'application/json'});
+      
+      return this.httpClient.put(this.API_ENDPOINT+'/petya-empleados/'+ empleado.id, empleado, {headers:headerrs});
+     }
+
+     delete(id){ 
+      return this.httpClient.delete(this.API_ENDPOINT+"/petya-empleados/" + id);
+    }
 }

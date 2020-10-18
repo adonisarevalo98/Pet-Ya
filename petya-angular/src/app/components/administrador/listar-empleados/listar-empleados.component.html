@@ -2,12 +2,12 @@
 <div class="card">
     <div class="card-body">
         <h6 class="text-center">
-            Client List
+            Lista de empleados
         </h6>
         <table class="table table-lg table-hover">
             <tbody>
                 <tr>
-                    <th></th>
+                    <th>ID</th>
                     <th>Nombres</th>              
                     <th>Apellidos</th>
                     <th>Correo</th>
@@ -22,16 +22,13 @@
                     <td>{{empleado.apellidos}}</td>
                     <td>{{empleado.correo}}</td>
                     <td>{{empleado.telefono}}</td>
-                    <td>{{empleado.categoria}}</td>
-                
-                   
-                    
+                    <td>{{empleado.categoria}}</td>        
                     <td>
-                        <a class="btn btn-secondary text-white" data-toggle="modal" data-target="#exampleModal" >
-                            <i class="far fa-edit"></i>
+                        <a class="btn btn-secondary text-white" data-toggle="modal" routerLink="/administrador/{{empleado.id}}" >
+                            <i class="far fa-edit">EDIT</i>
                         </a>
-                        <a class="btn btn-danger text-white" >
-                            <i class="fas fa-trash-alt"></i>
+                        <a class="btn btn-danger text-white"  data-toggle="modal" (click)="delete(empleado.id)">
+                            <i class="fas fa-trash-alt">DELETE</i>
                         </a>
                     </td>
                 </tr>

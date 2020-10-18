@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 //  Service 
 import { EmpleadoService } from '../../../services/empleado.service';
-import {Router } from '@angular/router'
+import {Router, ActivatedRoute } from '@angular/router'
 // toastr
 import { ToastrService } from 'ngx-toastr';
 import { Registro_Empleados } from 'src/app/interfaces/registro-empleados';
@@ -24,24 +24,56 @@ empleado: Registro_Empleados={
   telefono: null,
   categoria: null
 };
+id: any;
+editing: boolean=false;
+empleados: Registro_Empleados[];
   constructor(
     public toastr: ToastrService,
     private http: HttpClient,
     private empleadoService: EmpleadoService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { 
+    this.id = this.activatedRoute.snapshot.params['id'];
+   if(this.id){
+     this.editing = true;
+     this.empleadoService.select().subscribe((data: Registro_Empleados[]) =>{
+   this.empleados=data;
+   this.empleado = this.empleados.find((m) =>{ return m.id == this.id})
+   console.log(this.empleado);
+
+     })
+   }else{
+     this.editing = false;
+   }
+  }
 
   ngOnInit() {
   }
 
    insertEmpleado(){
-this.empleadoService.insert(this.empleado).subscribe(
-  data => {
-   
-    this.toastr.success('Completado!', 'Empleado registrado.');
-   
-  }, error =>{
-    this.toastr.error('UPS!', 'Ocurrio un Error.');
-  });
+     if(this.editing){
+       console.log(this.empleado);
+      this.empleadoService.put(this.empleado).subscribe(
+        data => {
+         
+          this.toastr.success('Perfecto!', 'Empleado actualizado.');
+         
+        }, error =>{
+          this.toastr.error('Este...', 'Parece que ocurrio un error.');
+        });
+      
+     }else{
+      console.log(this.empleado);
+      this.empleadoService.insert(this.empleado).subscribe(
+        data => {
+         
+          this.toastr.success('Completado!', 'Empleado registrado.');
+         
+        }, error =>{
+          this.toastr.error('UPS!', 'Ocurrio un Error.');
+        });
+      
+     }
    }
 }

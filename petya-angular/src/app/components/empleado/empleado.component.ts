@@ -15,7 +15,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.authService.userData.email);
+   
   }
 
 }

@@ -4,6 +4,7 @@ import { Identifiers } from '@angular/compiler';
 import { Registro_Empleados } from '../../../interfaces/registro-empleados'
 import { EmpleadoService} from '../../../services/empleado.service'
 import { EmailValidator } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({ 
   selector: 'app-listar-empleados',
   templateUrl: './listar-empleados.component.html',
@@ -12,7 +13,9 @@ import { EmailValidator } from '@angular/forms';
 export class ListarEmpleadosComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:8000/api';
   lista_empleados: Registro_Empleados[];
-  constructor(  private empleadoService: EmpleadoService,  private httpClient: HttpClient
+  constructor(  private empleadoService: EmpleadoService,
+   private httpClient: HttpClient,
+   private toastr: ToastrService 
     ) { 
 
       this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe( 
@@ -25,6 +28,17 @@ export class ListarEmpleadosComponent implements OnInit {
     }
 
   ngOnInit(): void {
+   
+  }
+  delete(id){
+    if(confirm('Esta seguro de eliminar este empleado?')){
+      this.empleadoService.delete(id).subscribe(data =>
+        {
+         this.toastr.success('Perfecto!', 'Empleado eliminado.');
+        }, error =>{
+         this.toastr.error('Hey!', 'No se pudo eliminar el registro.');
+        })
+    }
    
   }
 }

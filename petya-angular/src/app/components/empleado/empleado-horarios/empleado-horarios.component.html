@@ -12,7 +12,8 @@
                     <th>Salida</th>
                     <th>Empleado</th>
                 </tr>
-                <tr *ngFor="let horario of horarios_user">
+                
+                <tr *ngFor="let horario of horario_empleados">
                     <td></td>
                     <td>{{horario.dia}}</td>              
                     <td>{{horario.hora_inicio}}</td>
@@ -31,6 +32,7 @@
                         </a>
                     </td>
                 </tr>
+   
             </tbody>
         </table>
     </div>

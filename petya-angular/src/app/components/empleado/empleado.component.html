@@ -6,20 +6,20 @@
     <ul class="nav flex-md">
       <br><br>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/dashboard'] ">
-          <i class="fas fa-user"></i>User Profile
+        <a class="nav-link" [routerLink]="['/empleado'] ">
+          <i class="fas fa-user"></i>Horarios
         </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/buscador']">
-              <i class="fas fa-search"></i>Buscador
+          <a class="nav-link" [routerLink]="['']">
+              <i class="fas fa-search"></i>Citas
           </a>
       </li>
       <!-- Calling SignOut() Api from AuthService -->
       <div class="row" *ngIf="authService.userData as user">
       <li class="nav-item">
         <a class="nav-link" (click)="authService.SignOut()">
-          <i class="fas fa-sign-out-alt"></i>Log out
+          <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
         </a>
       </li> 
       </div>
