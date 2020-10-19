@@ -18,6 +18,7 @@ html{
 
 .nav-item > a{
     color: white !important;
+    cursor: pointer;
 }
 
 .nav-item{
@@ -25,7 +26,12 @@ html{
 }
 
 .bg-vet, form > .btn-reg, form > .btn-reg:hover{
-    background-color: #096B67;    
+    background-color: #096B67 !important;    
+    color: white;
+}
+
+.btn-reg, .btn-reg:hover{
+    background-color: #096B67 !important;    
     color: white;
 }
 
