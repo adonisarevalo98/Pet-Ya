@@ -35,6 +35,8 @@ import { EditarClienteComponent } from './components/clientes/editar-cliente/edi
 import { CrearHorariosComponent } from './components/administrador/control-horarios/crear-horarios/crear-horarios.component';
 import { ListarHorariosComponent } from './components/administrador/control-horarios/listar-horarios/listar-horarios.component';
 import { ControlHorariosComponent } from './components/administrador/control-horarios/control-horarios.component';
+import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
+
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { ControlHorariosComponent } from './components/administrador/control-hor
     EditarClienteComponent,
     CrearHorariosComponent,
     ListarHorariosComponent,
-    ControlHorariosComponent
+    ControlHorariosComponent,
+    DashboardClienteComponent
   ],
   imports: [
     BrowserModule,

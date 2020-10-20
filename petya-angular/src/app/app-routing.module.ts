@@ -16,6 +16,7 @@ import { EditarClienteComponent } from './components/clientes/editar-cliente/edi
 import { CrearEmpleadoComponent } from './components/administrador/crear-empleado/crear-empleado.component'
 import { ControlHorariosComponent } from './components/administrador/control-horarios/control-horarios.component'
 import {CrearHorariosComponent} from './components/administrador/control-horarios/crear-horarios/crear-horarios.component'
+import {DashboardClienteComponent} from './components/dashboard-cliente/dashboard-cliente.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -32,9 +33,8 @@ const routes: Routes = [
   { path: 'control-horarios/:id', component: CrearHorariosComponent },
   { path: 'agregar-cliente', component: AgregarClienteComponent },
   { path: 'editar-cliente', component: EditarClienteComponent },
-  {path:'editar-cliente/:id',component:EditarClienteComponent,canActivate:[AuthGuard]}
-  
-  
+  {path:'editar-cliente/:id',component:EditarClienteComponent,canActivate:[AuthGuard]},
+  { path: 'dashboard-cliente', component: DashboardClienteComponent }
 ];
 
 
