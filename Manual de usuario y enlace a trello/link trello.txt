@@ -1,5 +1,5 @@
 
 
----> Debe iniciar sesi�n ya que el tablero es privado.
+---> Debe iniciar sesión ya que el tablero es privado.
 
-    https://trello.com/b/ZN3VEZi5/pet-ya-primer-avance
+    https://trello.com/b/ZN3VEZi5/pet-ya-proyecto-de-cátedra
