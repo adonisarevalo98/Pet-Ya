@@ -32,7 +32,6 @@ export class EmpleadoHorariosComponent implements OnInit {
       this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe(
       ( data:Registro_Empleados[]) => {
         this.lista_empleados = data ; 
-        console.log( this.authService.userData)
         let empleados = this.authService.userData;
        this.lista_empleados.forEach(element => {
          if(element.correo==empleados.email){
