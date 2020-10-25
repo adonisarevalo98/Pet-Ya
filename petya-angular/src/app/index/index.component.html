@@ -35,23 +35,23 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#servicios">Servicios<span class="sr-only"></span></a>
+                    <a class="nav-link" routerLink="." fragment="servicios">Servicios<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
                     <!-- routerLink="/editar-cliente"-->
-                    <a class="nav-link" href="#ofertas">Ofertas</a>
+                    <a class="nav-link" routerLink="." fragment="ofertas">Ofertas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#consejos">Consejos</a>
+                    <a class="nav-link" routerLink="." fragment="consejos">Consejos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#acercade">Acerca de</a>
+                    <a class="nav-link" routerLink="." fragment="acercade">Acerca de</a>
                 </li>
                 <li class="nav-item" *ngIf="!authService.userData">
                     <a class="nav-link" routerLink="/sign-in">Iniciar sesión</a>
                 </li>
                 <li class="nav-item" *ngIf="authService.userData as user">
-                    <a class="nav-link" routerLink="/dashboard-cliente">Dashboard</a>
+                    <a class="nav-link" routerLink="/editar-cliente">Dashboard</a>
                 </li>
                 <li class="nav-item" *ngIf="authService.userData as user">
                     <a class="nav-link" (click)="authService.SignOut()">

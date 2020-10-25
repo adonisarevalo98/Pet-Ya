@@ -14,9 +14,12 @@ import { AgregarClienteComponent } from './components/clientes/agregar-cliente/a
 import { ClienteListComponent } from './components/clientes/cliente-list/cliente-list.component';
 import { EditarClienteComponent } from './components/clientes/editar-cliente/editar-cliente.component';
 import { CrearEmpleadoComponent } from './components/administrador/crear-empleado/crear-empleado.component'
+import { ListarEmpleadosComponent } from './components/administrador/listar-empleados/listar-empleados.component'
 import { ControlHorariosComponent } from './components/administrador/control-horarios/control-horarios.component'
 import {CrearHorariosComponent} from './components/administrador/control-horarios/crear-horarios/crear-horarios.component'
+import {ListarHorariosComponent} from './components/administrador/control-horarios/listar-horarios/listar-horarios.component'
 import {DashboardClienteComponent} from './components/dashboard-cliente/dashboard-cliente.component';
+import {EmpleadoHorariosComponent} from './components/empleado/empleado-horarios/empleado-horarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -27,9 +30,13 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'empleado', component: EmpleadoComponent },
+  { path: 'crear-empleado', component: CrearEmpleadoComponent },
+  { path: 'listar-empleado', component: ListarEmpleadosComponent },
   { path: 'administrador', component: AdministradorComponent },
   { path: 'administrador/:id', component: CrearEmpleadoComponent },
-  { path: 'control-horarios', component: ControlHorariosComponent },
+  { path: 'crear-horarios', component: CrearHorariosComponent },
+  { path: 'listar-horarios', component: ListarHorariosComponent },
+  { path: 'mis-horarios', component: EmpleadoHorariosComponent },
   { path: 'control-horarios/:id', component: CrearHorariosComponent },
   { path: 'agregar-cliente', component: AgregarClienteComponent },
   { path: 'editar-cliente', component: EditarClienteComponent },
@@ -39,7 +46,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:"ignore",anchorScrolling:'enabled',scrollPositionRestoration:'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

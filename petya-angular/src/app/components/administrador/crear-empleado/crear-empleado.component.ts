@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 //  Service 
 import { EmpleadoService } from '../../../services/empleado.service';
 import {Router, ActivatedRoute } from '@angular/router'
+import { AuthService } from "../../../services/auth.service";
 // toastr
 import { ToastrService } from 'ngx-toastr';
 import { Registro_Empleados } from 'src/app/interfaces/registro-empleados';
@@ -32,7 +33,8 @@ empleados: Registro_Empleados[];
     private http: HttpClient,
     private empleadoService: EmpleadoService,
     public router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public authService: AuthService
   ) { 
     this.id = this.activatedRoute.snapshot.params['id'];
    if(this.id){

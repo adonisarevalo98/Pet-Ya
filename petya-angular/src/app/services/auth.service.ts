@@ -95,7 +95,7 @@ export class AuthService {
     if(categoria=='A'){
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['administrador']);
+          this.router.navigate(['crear-empleado']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
