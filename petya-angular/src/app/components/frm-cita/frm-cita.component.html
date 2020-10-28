@@ -1,0 +1,106 @@
+<div class="container">    
+    <h2>Nueva cita</h2><button class="btn btn-light float-right" >Ver citas</button>
+    <br>
+    <br>            
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cliente">Cliente</label>
+                <select [(ngModel)]="frmcita.cliente_id" id="cliente" class="form-control">
+                  <option *ngFor="let clie of clientes" value="{{clie.id}}">{{clie.nombre}}</option>                
+                </select>
+              </div>
+            <div class="form-group col-md-6">
+                <label for="empleado">Empleado</label>
+                <select [(ngModel)]="frmcita.id_empleado" id="empleado" class="form-control">
+                  <option *ngFor="let emp of empleados" value="{{emp.id}}">{{emp.nombres}}, {{emp.apellidos}}</option>
+                </select>
+              </div>
+        </div>      
+    
+          <div class="form-row">        
+            <div class="form-group col-md-2">
+                <label for="date">Fecha</label>
+                <input [(ngModel)]="frmcita.fecha_cita" type="text" class="form-control" id="date">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="time">hora</label>
+              <input type="text" [(ngModel)]="frmcita.hora" class="form-control" id="time">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="nombMasc">Nombre de mascota</label>
+              <input [(ngModel)]="frmcita.nombre_mascota" type="text" class="form-control" id="nombMasc">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="vacu1">Vacunación</label>
+              <input [(ngModel)]="frmcita.vacunacion" type="text" class="form-control" id="vacu1">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="pulso">Pulso</label>
+              <input [(ngModel)]="frmcita.pulso" type="text" class="form-control" id="pulso">
+            </div>
+          </div>
+    
+          <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="especi">Especie</label>
+                <input [(ngModel)]="frmcita.especie" type="text" class="form-control" id="especi">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="raz">Raza</label>
+                <input [(ngModel)]="frmcita.raza" type="text" class="form-control" id="raz">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="peso">Peso</label>
+                <input [(ngModel)]="frmcita.peso" type="text" class="form-control" id="peso">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="edad">Edad</label>
+                <input [(ngModel)]="frmcita.edad" type="text" class="form-control" id="edad">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="sexo">Sexo</label>
+                <select [(ngModel)]="frmcita.sexo" id="sexo" class="form-control">
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="color">Color</label>
+                <input [(ngModel)]="frmcita.color" type="text" class="form-control" id="color">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="tempera">Temperatura</label>
+                <input [(ngModel)]="frmcita.temperatura" type="text" class="form-control" id="tempera">
+              </div>
+          </div>
+    
+          <div class="form-row">  
+              <div class="form-group col-md-4">
+                <label for="vacuRe">Vacunas realizadas</label>
+                <textarea [(ngModel)]="frmcita.vacunas_realizadas" class="form-control" id="vacuRe" rows="3"></textarea>
+              </div>
+              <div class="form-group col-md-8">
+                <label for="motivo">Motivo de la cita</label>
+                <textarea [(ngModel)]="frmcita.motivo" class="form-control" id="motivo" rows="3"></textarea>
+              </div>
+          </div>
+         <div class="form-row">
+          <div class="form-group col-md-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+         </div>
+         <div class="row justify-content-center">
+           <div class="col-md-2">
+            <button (click)="saveFrmcita()" class="btn btn-primary btn-lg">Registrar</button>    
+           </div>
+          <div class="col-md-2">
+            <button class="btn btn-light btn-lg">Cancelar</button>            
+          </div>        
+         </div>
+          
+    </div>

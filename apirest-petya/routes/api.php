@@ -33,3 +33,5 @@ Route::resource('petya-formcita', FormularioCitaController::class);
 Route::resource('petya-empleados', EmpleadoController::class);
 //ruta a metodos del controller horario
 Route::resource('petya-horarios', HorarioController::class);
+//ruta para ejecutar metodo de tabla de frmcitas 
+Route::get('petya-formcita/tabla', [FormularioCitaController::class, 'tabla']);

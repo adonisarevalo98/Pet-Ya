@@ -1,0 +1,30 @@
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">cliente</th>
+            <th scope="col">empleado</th>
+            <th scope="col">Nombre mascota</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cit of citas">
+            <th scope="row">{{cit.id}}</th>
+            <td>{{cit.nombre_cliente}}</td>
+            <td>{{cit.nombre_emple}},{{cit.apel_emple}}</td>
+            <td>{{cit.nombre_mascota}}</td>
+            <td>{{cit.especie}}</td>
+            <td>{{cit.raza}}</td>
+            <td>{{cit.fecha_cita}}</td>
+            <td>{{cit.hora}}</td>
+            <td><a class="btn btn-primary btn-sm" routerLink="/frmCitas/{{cit.id}}">Ver/editar</a></td>
+          </tr>          
+        </tbody>
+      </table>  
+</div>

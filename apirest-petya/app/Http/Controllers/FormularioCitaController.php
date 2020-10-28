@@ -109,4 +109,12 @@ class FormularioCitaController extends Controller
         }
         return response()->json($formCita,$code);
     }
+    public function tabla(){//codigo para mostrar en la tabla de formCitas
+        $tabla = DB::table('formulario_citas')
+        ->join('clientes', 'clientes.id', '=', 'formulario_citas.cliente_id')
+        ->join('empleados', 'empleados.id', '=', 'formulario_citas.id_empleado')
+        ->select('formulario_citas.id','formulario_citas.nombre_mascota','formulario_citas.especie', 'formulario_citas.raza','formulario_citas.fecha_cita','formulario_citas.hora', 'clientes.nombre as nombre_cliente', 'empleados.nombres as nombre_emple','empleados.apellidos as apel_emple')
+        ->get();
+        return response()->json($tabla);
+    }
 }
