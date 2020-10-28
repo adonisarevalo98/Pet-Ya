@@ -36,6 +36,12 @@ import { CrearHorariosComponent } from './components/administrador/control-horar
 import { ListarHorariosComponent } from './components/administrador/control-horarios/listar-horarios/listar-horarios.component';
 import { ControlHorariosComponent } from './components/administrador/control-horarios/control-horarios.component';
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
+import { RecepcionComponent } from './components/recepcion/recepcion.component';
+import { ListarCitasComponent } from './components/recepcion/listar-citas/listar-citas.component';
+import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/empleado-citas.component';
+import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
+import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
+import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
 
 
 
@@ -61,7 +67,13 @@ import { DashboardClienteComponent } from './components/dashboard-cliente/dashbo
     CrearHorariosComponent,
     ListarHorariosComponent,
     ControlHorariosComponent,
-    DashboardClienteComponent
+    DashboardClienteComponent,
+    RecepcionComponent,
+    ListarCitasComponent,
+    EmpleadoCitasComponent,
+    EmpleadoDiagnosticosComponent,
+    ListarDiagnosticosComponent,
+    EditarCitasComponent
   ],
   imports: [
     BrowserModule,

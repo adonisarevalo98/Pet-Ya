@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 //declarando modelo a usar en controller
-use App\Models\Empleado;
+use App\Models\Cita;
 
 use Illuminate\Http\Request;
 
-class EmpleadoController extends Controller
+class CitaController extends Controller
 {
 
     public function index()
     {
         //seleccionando todos los registros de la tabla por medio del modelo
-        $empleados = Empleado::all();
-        if(is_null($empleados) || $empleados == ''){
+        $citas = Cita::all();
+        if(is_null($citas) || $citas == ''){
             //$respuesta = ['resultado'=>'NO'];
             $code = 204;//peticion sin contenido
         }else{
@@ -23,23 +23,25 @@ class EmpleadoController extends Controller
         }
         
         //retornando json para frontend
-        return response()->json($empleados,$code);
+        return response()->json($citas,$code);
     }
 
     public function store(Request $request)
     {
         //creando obj del modelo Empleado para guardar nuevo registro
-        $empleado = new Empleado();
+        $cita = new Cita();
         //asignando datos del request al objeto
-        $empleado->nombres = $request->input('nombres');
-        $empleado->apellidos = $request->input('apellidos');
-        $empleado->correo = $request->input('correo');
-        $empleado->foto_perfil = $request->input('foto_perfil');
-        $empleado->telefono = $request->input('telefono');
-        $empleado->password = $request->input('password');
-        $empleado->categoria = $request->input('categoria');
-        //guardando cliente
-        if($empleado->save()){
+        $cita->id_cliente = $request->input('id_cliente');
+        $cita->nombre_mascota = $request->input('nombre_mascota');
+        $cita->fecha_cita = $request->input('fecha_cita');
+        $cita->hora = $request->input('hora');
+        $cita->tipo_cita = $request->input('tipo_cita');
+        $cita->especificaciones = $request->input('especificaciones');
+        $cita->estado = $request->input('estado');
+        $cita->id_empleado = $request->input('id_empleado');
+        $cita->id_formulario = $request->input('id_formulario');
+        //guardando cita
+        if($cita->save()){
             $respuesta = ['resultado'=>'OK'];
             $code = 200;//peticion con exito
         }else{
@@ -52,24 +54,26 @@ class EmpleadoController extends Controller
 
     public function show($id)
     {
-        $empleado = Empleado::find($id);
-        return json_encode($empleado);
+        $cita = Cita::find($id);
+        return json_encode($cita);
     }
 
     public function update(Request $request, $id)
     {
         //seleccionando registro segun id para modifircarlo
-        $empleado = Empleado::find($id);
+        $cita =Cita::find($id);
         //asignando datos del request al objeto
-        $empleado->nombres = $request->input('nombres');
-        $empleado->apellidos = $request->input('apellidos');
-        $empleado->correo = $request->input('correo');
-        $empleado->foto_perfil = $request->input('foto_perfil');
-        $empleado->telefono = $request->input('telefono');
-        $empleado->password = $request->input('password');
-        $empleado->categoria = $request->input('categoria');
+        $cita->id_cliente = $request->input('id_cliente');
+        $cita->nombre_mascota = $request->input('nombre_mascota');
+        $cita->fecha_cita = $request->input('fecha_cita');
+        $cita->hora = $request->input('hora');
+        $cita->tipo_cita = $request->input('tipo_cita');
+        $cita->especificaciones = $request->input('especificaciones');
+        $cita->estado = $request->input('estado');
+        $cita->id_empleado = $request->input('id_empleado');
+        $cita->id_formulario = $request->input('id_formulario');
         //guardando cambios en el registro
-        if($empleado->save()){
+        if($cita->save()){
             $respuesta = ['resultado'=>'OK'];
             $code = 200;//peticion con exito
         }else{
@@ -82,8 +86,8 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //buscando registro por id
-        $empleado = Empleado::find($id);
-        if($empleado->delete()){
+        $cita = Cita::find($id);
+        if($cita->delete()){
             $respuesta = ['resultado'=>'OK'];
             $code = 200;//peticion con exito
         }else{

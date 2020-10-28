@@ -112,6 +112,16 @@ export class AuthService {
        // window.alert("Por favor revisar credenciales")
          window.alert(error.message)
       })
+    }else if(categoria=='R'){
+      this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['listar-citas']);
+        });
+        this.SetUserData(result.user);
+      }).catch((error) => {
+       // window.alert("Por favor revisar credenciales")
+         window.alert(error.message)
+      })
     }else {
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.ngZone.run(() => {

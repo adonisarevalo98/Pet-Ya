@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from '../../../services/empleado.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Horario } from '../../../interfaces/horario'
 import { AuthService } from "../../../services/auth.service";
+import { Horario } from '../../../interfaces/horario';
 import { element } from 'protractor';
-import { Registro_Empleados} from '../../../interfaces/registro-empleados'
-import { HorarioService} from '../../../services/horario.service'
+import { Registro_Empleados} from '../../../interfaces/registro-empleados';
+import { HorarioService} from '../../../services/horario.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ToastrService } from 'ngx-toastr';
 @Component({

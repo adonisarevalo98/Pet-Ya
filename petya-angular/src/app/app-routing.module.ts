@@ -20,6 +20,11 @@ import {CrearHorariosComponent} from './components/administrador/control-horario
 import {ListarHorariosComponent} from './components/administrador/control-horarios/listar-horarios/listar-horarios.component'
 import {DashboardClienteComponent} from './components/dashboard-cliente/dashboard-cliente.component';
 import {EmpleadoHorariosComponent} from './components/empleado/empleado-horarios/empleado-horarios.component';
+import { ListarCitasComponent } from './components/recepcion/listar-citas/listar-citas.component';
+import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/empleado-citas.component';
+import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
+import { RecepcionComponent } from './components/recepcion/recepcion.component';
+import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -41,7 +46,11 @@ const routes: Routes = [
   { path: 'agregar-cliente', component: AgregarClienteComponent },
   { path: 'editar-cliente', component: EditarClienteComponent },
   {path:'editar-cliente/:id',component:EditarClienteComponent,canActivate:[AuthGuard]},
-  { path: 'dashboard-cliente', component: DashboardClienteComponent }
+  { path: 'dashboard-cliente', component: DashboardClienteComponent },
+  { path: 'listar-citas', component: ListarCitasComponent },
+  { path: 'empleado-citas', component: EmpleadoCitasComponent },
+  { path: 'empleado-diagnosticos', component: EmpleadoDiagnosticosComponent },
+  { path: 'recepcion/:id', component: EditarCitasComponent },
 ];
 
 
