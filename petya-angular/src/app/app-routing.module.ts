@@ -25,6 +25,7 @@ import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/emp
 import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
 import { RecepcionComponent } from './components/recepcion/recepcion.component';
 import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
+import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -51,6 +52,8 @@ const routes: Routes = [
   { path: 'empleado-citas', component: EmpleadoCitasComponent },
   { path: 'empleado-diagnosticos', component: EmpleadoDiagnosticosComponent },
   { path: 'recepcion/:id', component: EditarCitasComponent },
+  { path: 'empleado/:id', component: EmpleadoDiagnosticosComponent },
+  { path: 'listar-diagnosticos', component: ListarDiagnosticosComponent }
 ];
 
 

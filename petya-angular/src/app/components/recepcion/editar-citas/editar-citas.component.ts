@@ -84,7 +84,7 @@ export class EditarCitasComponent implements OnInit {
 
   ActualizarCita(){
     if(this.editing){
-      console.log(this.cita);
+      console.log(this.formulariocita);
      this.citaService.put(this.cita).subscribe(
        data => {
         

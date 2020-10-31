@@ -9,6 +9,7 @@ use App\Http\Controllers\FormularioCitaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\DiagnosticoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +37,5 @@ Route::resource('petya-empleados', EmpleadoController::class);
 Route::resource('petya-horarios', HorarioController::class);
 //ruta a metodos del controller cita
 Route::resource('petya-citas', CitaController::class);
+//ruta a metodos del controller diagnostico
+Route::resource('petya-diagnosticos', DiagnosticoController::class);

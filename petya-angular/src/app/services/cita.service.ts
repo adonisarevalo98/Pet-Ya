@@ -15,4 +15,8 @@ export class CitaService {
     
     return this.httpClient.put(this.API_ENDPOINT+'/petya-citas/'+ cita.id, cita, {headers:headerrs});
    }
+
+   delete(id){ 
+    return this.httpClient.delete(this.API_ENDPOINT+"/petya-citas/" + id);
+  }
 }
