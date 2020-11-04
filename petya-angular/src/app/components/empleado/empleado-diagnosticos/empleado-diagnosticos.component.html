@@ -70,74 +70,120 @@
             <!--Fin Menu lateral-->
             <!--Formulario-->
             <div class="col-lg-9">
-                <div class="col-lg-6 mx-auto">
-                    <div class="card mt-5 mb-5">
+                <form #diagnForm="ngForm">
+                <div class="col-lg-9 mx-auto">
+                    <div class="card mt-4 mb-5">
                         <div class="card-body">
                             <h3>Datos de cita</h3>
                             <div>
                                 <!-- TO UPDATE -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <p>Nombre de la mascota</p>
+                                        <input type="text" readonly class="form-control" name="id_cliente"
+                                            [(ngModel)]="cita.nombre_mascota" placeholder="Id cliente">
+                                    </div>
+
+
+                                    <div class="form-group col-md-3">
+                                        <p>Edad</p>
+                                        <input type="text" readonly class="form-control" name="edad"
+                                            [(ngModel)]="formulariocita.edad" placeholder="Edad">
+                                    </div>
+
+
+                                    <div class="form-group col-md-4">
+                                        <p>Raza</p>
+                                        <input type="text" readonly class="form-control" name="raza"
+                                            [(ngModel)]="formulariocita.raza" placeholder="Raza">
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <p>Vacunacion</p>
+                                        <input type="text" readonly class="form-control" name="vacunacion"
+                                            [(ngModel)]="formulariocita.vacunacion" placeholder="Vacunacion">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <p>Vacunas realizadas</p>
+                                        <input type="text" readonly class="form-control" name="vacunas_realizadas"
+                                            [(ngModel)]="formulariocita.vacunas_realizadas"
+                                            placeholder="Vacunas Realizadas">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-4">
+                                        <p>Peso</p>
+                                        <input type="text" required pattern="^\d{1,6}\.\d{0,2}$" class="form-control"
+                                            name="peso" autocomplete="off" [(ngModel)]="formulariocita.peso" #pesoC="ngModel"
+                                            placeholder="00.00">
+                                        <div *ngIf="(pesoC.invalid && (pesoC.dirty || pesoC.touched))">
+                                            <p class="text-danger" *ngIf="pesoC.errors.pattern">Peso con formato
+                                                incorrecto</p>
+                                            <p class="text-danger" *ngIf="pesoC.errors.required">Campo requerido</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <p>Pulso</p>
+                                        <input type="text" required pattern="^\d{1,6}\.\d{0,2}$" class="form-control"
+                                            name="pulso" autocomplete="off" [(ngModel)]="formulariocita.pulso" #pulsoC="ngModel"
+                                            placeholder="00.00">
+                                        <div *ngIf="(pulsoC.invalid && (pulsoC.dirty || pulsoC.touched))">
+                                            <p class="text-danger" *ngIf="pulsoC.errors.pattern">Pulso con formato
+                                                incorrecto</p>
+                                            <p class="text-danger" *ngIf="pulsoC.errors.required">Campo requerido</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <p>Temperatura</p>
+                                        <input type="text" required pattern="^\d{1,6}\.\d{0,2}$" class="form-control"
+                                            name="temperatura" autocomplete="off" [(ngModel)]="formulariocita.temperatura" #tempC="ngModel"
+                                            placeholder="00.00">
+
+                                        <div *ngIf="(tempC.invalid && (tempC.dirty || tempC.touched))">
+                                            <p class="text-danger" *ngIf="tempC.errors.pattern">Temperatura con formato
+                                                incorrecto</p>
+                                            <p class="text-danger" *ngIf="tempC.errors.required">Campo requerido</p>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
-                                    <p>Mascota:</p>
-                                    <input type="text" class="form-control" name="id_cliente"
-                                  [(ngModel)]="cita.nombre_mascota"  placeholder="Id cliente">
-                                </div>
-                                <p>Raza:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="raza"
-                                    [(ngModel)]="formulariocita.raza" placeholder="Raza">
-                                </div>
-                                <p>Edad:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="edad"
-                                     [(ngModel)]="formulariocita.edad" placeholder="Edad">
-                                </div>
-                                <p>Vacunacion:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="vacunacion"
-                                  [(ngModel)]="formulariocita.vacunacion" placeholder="Vacunacion">
-                                </div>
-                                <p>Vacunas realizadas:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="vacunas_realizadas"
-                                   [(ngModel)]="formulariocita.vacunas_realizadas" placeholder="Vacunas Realizadas">
-                                </div>
-                                <p>Peso:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="peso"
-                                    [(ngModel)]="formulariocita.peso" placeholder="Peso">
-                                </div>
-                                <p>Pulso:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="pulso"
-                                   [(ngModel)]="formulariocita.pulso" placeholder="Pulso">
-                                </div>
-                                <p>Temperatura:</p>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="temperatura"
-                                   [(ngModel)]="formulariocita.temperatura" placeholder="Temperatura">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="diagnostico_final"
-                                    [(ngModel)]="diagnostico_final" placeholder="Diagnostico">
+                                    <input type="text" required class="form-control" name="diagnostico_final" autocomplete="off"
+                                        [(ngModel)]="diagnostico_final" #diagC="ngModel" placeholder="Diagnostico">
+
+                                        <div *ngIf="(diagC.invalid && (diagC.dirty || diagC.touched))">
+                                            <p class="text-danger" *ngIf="diagC.errors.required">Campo requerido</p>
+                                        </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="tratamiento"
-                                    [(ngModel)]="tratamiento" placeholder="Tratamiento">
+                                    <input type="text" required class="form-control" name="tratamiento" autocomplete="off" [(ngModel)]="tratamiento" #trataC="ngModel"
+                                        placeholder="Tratamiento">
+                                        <div *ngIf="(trataC.invalid && (trataC.dirty || trataC.touched))">
+                                            <p class="text-danger" *ngIf="trataC.errors.required">Campo requerido</p>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputState">Estado de cita</label>
                                     <select id="inputState" class="form-control" [(ngModel)]="cita.estado">
                                         <option selected>Finalizado</option>
-                                    
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-reg mr-3" (click)="GenerarDiagnostico()">
+                                    <button class="btn btn-reg mr-3" (click)="GenerarDiagnostico()" [disabled]="!diagnForm.form.valid">
                                         <i class="fas fa-plus-circle"></i> Finalizar
                                     </button>
-                                    <button class="btn btn-secondary" type="reset">
+                                    <button class="btn btn-warning" type="reset">
                                         <i class="fas fa-sync-alt"></i> Reset
                                     </button>
                                 </div>
@@ -145,6 +191,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
             <!--Fin Formulario-->
         </div>

@@ -50,8 +50,11 @@
                 <li class="nav-item" *ngIf="!authService.userData">
                     <a class="nav-link" routerLink="/sign-in">Iniciar sesión</a>
                 </li>
-                <li class="nav-item" *ngIf="authService.userData as user">
+                <li class="nav-item" *ngIf="id==1">
                     <a class="nav-link" routerLink="/editar-cliente">Dashboard</a>
+                </li>
+                <li class="nav-item" *ngIf="id==0">
+                    <a class="nav-link" routerLink="/dashboard-google">Dashboard</a>
                 </li>
                 <li class="nav-item" *ngIf="authService.userData as user">
                     <a class="nav-link" (click)="authService.SignOut()">
@@ -90,12 +93,12 @@
                         {{authService.userData.email}}
                         <div class="input-group">
                             <input type="text" [(ngModel)]="registro.nombre" name="" id=""
-                                class="form-control inp input-sm mr-1" placeholder="Nombres">
+                                class="form-control inp input-sm mr-1" placeholder="Nombre completo">
 
                         </div>
                         <div class="form-group">
                             <input type="text" [(ngModel)]="registro.correo" name="" id="" class="form-control inp"
-                                placeholder="Correo Electronico:">
+                                placeholder="Correo Electronico">
                         </div>
                         <div class="form-group">
                             <input type="password" [(ngModel)]="registro.contra" name="" id="" class="form-control inp"
@@ -103,7 +106,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" [(ngModel)]="registro.telefono" name="" id="" class="form-control inp"
-                                placeholder="Telefono">
+                                placeholder="Teléfono">
                         </div>
                         <button type="button" (click)="guardarcliente()" name="" id=""
                             class="btn btn-reg btn-lg btn-block">Registrar</button>

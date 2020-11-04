@@ -26,7 +26,7 @@ import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-di
 import { RecepcionComponent } from './components/recepcion/recepcion.component';
 import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
 import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
-
+import { DashboardGoogleComponent } from './components/dashboard-google/dashboard-google.component';
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
@@ -48,6 +48,7 @@ const routes: Routes = [
   { path: 'editar-cliente', component: EditarClienteComponent,canActivate:[AuthGuard] },
   {path:'editar-cliente/:id',component:EditarClienteComponent},
   { path: 'dashboard-cliente', component: DashboardClienteComponent,canActivate:[AuthGuard] },
+  { path: 'dashboard-google', component: DashboardGoogleComponent,canActivate:[AuthGuard] },
   { path: 'listar-citas', component: ListarCitasComponent,canActivate:[AuthGuard] },
   { path: 'empleado-citas', component: EmpleadoCitasComponent,canActivate:[AuthGuard] },
   { path: 'empleado-diagnosticos', component: EmpleadoDiagnosticosComponent,canActivate:[AuthGuard] },

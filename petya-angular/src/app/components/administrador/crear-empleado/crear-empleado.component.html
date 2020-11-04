@@ -70,6 +70,8 @@
             <!--Fin Menu lateral-->
             <!--Formulario-->
             <div class="col-lg-9">
+                
+                <form #clienteForm="ngForm">
                 <div class="col-lg-6 mx-auto">
                     <div class="card mt-5 mb-5">
                         <div class="card-body">
@@ -78,47 +80,62 @@
                                 <!-- TO UPDATE -->
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="nombres"
-                                        [(ngModel)]="empleado.nombres" placeholder="Nombres">
+                                    <input type="text" required pattern="^[a-zA-Z\s]*$" class="form-control" name="nombres" autocomplete="off"
+                                        [(ngModel)]="empleado.nombres" #nomC="ngModel" placeholder="Nombres">
+
+                                        <div *ngIf="(nomC.invalid && (nomC.dirty || nomC.touched))">
+                                            <p class="text-danger" *ngIf="nomC.errors.pattern">Solo se permiten letras</p>
+                                            <p class="text-danger" *ngIf="nomC.errors.required">Campo requerido</p>                    
+                                        </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="apellidos"
-                                        [(ngModel)]="empleado.apellidos" placeholder="Apellidos">
+                                    <input type="text" required pattern="^[a-zA-Z\s]*$" class="form-control" name="apellidos" autocomplete="off"
+                                        [(ngModel)]="empleado.apellidos" #apellC="ngModel" placeholder="Apellidos">
+                                        <div *ngIf="(apellC.invalid && (apellC.dirty || apellC.touched))">
+                                            <p class="text-danger" *ngIf="apellC.errors.pattern">Solo se permiten letras</p>
+                                            <p class="text-danger" *ngIf="apellC.errors.required">Campo requerido</p>                    
+                                        </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="correo" [(ngModel)]="empleado.correo"
-                                        placeholder="Correo">
+                                    <input type="text" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" class="form-control" name="correo" autocomplete="off" [(ngModel)]="empleado.correo"
+                                    #emaC="ngModel" placeholder="Correo">
+                                    <div *ngIf="(emaC.invalid && (emaC.dirty || emaC.touched))">
+                                        <p class="text-danger" *ngIf="emaC.errors.pattern">Formato de email incorrecto</p>
+                                        <p class="text-danger" *ngIf="emaC.errors.required">Campo requerido</p>                    
+                                    </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="foto_perfil"
-                                        [(ngModel)]="empleado.foto_perfil" placeholder="foto_perfil">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="telefono"
-                                        [(ngModel)]="empleado.telefono" placeholder="Teléfono (0000-0000)">
+                                    <input type="text" required pattern="[0-9]{4}[-][0-9]{4}" class="form-control" name="telefono" autocomplete="off"
+                                        [(ngModel)]="empleado.telefono" #telC="ngModel" placeholder="Teléfono (0000-0000)">
+                                        <div *ngIf="(telC.invalid && (telC.dirty || telC.touched))">
+                                            <p class="text-danger" *ngIf="telC.errors.pattern">Formato de teléfono incorrecto</p>
+                                            <p class="text-danger" *ngIf="telC.errors.required">Campo requerido</p>                    
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputState">Categoria</label>
-                                    <select id="inputState" class="form-control" [(ngModel)]="empleado.categoria">
-                                        <option selected>E</option>
-                                        <option>R</option>
-                                        <option>A</option>
+                                    <select (change)="onChange($event.target.value)" id="inputState" class="form-control" #opC="ngModel" [(ngModel)]="empleado.categoria">
+                                        <option value="E" selected>{{E}}</option>
+                                        <option value="R">{{R}}</option>
+                                        <option value="A">{{A}}</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <button class="btn btn-reg mr-3" (click)="insertEmpleado()">
+                               
+                                    <button class="btn btn-reg mr-3" (click)="insertEmpleado()" [disabled]="!clienteForm.form.valid">
                                         <i class="fas fa-plus-circle"></i> Registrar
                                     </button>
-                                    <button class="btn btn-secondary" type="reset">
+                                    <button class="btn btn-warning" type="reset">
                                         <i class="fas fa-sync-alt"></i> Reset
                                     </button>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
             <!--Fin Formulario-->
         </div>

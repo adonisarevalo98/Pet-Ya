@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service";
 import { Cliente } from "../interfaces/cliente";
 import { ClienteService } from "../services/cliente.service";
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-index',
@@ -11,9 +12,30 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IndexComponent implements OnInit {
   allclient = null;
-  constructor(public authService: AuthService, private clienteServices: ClienteService, private toastr: ToastrService
+  API_ENDPOINT = 'http://localhost:8000/api';
+  correo: AuthService[];
+  id_empleado=0;
+ lista_horarios=null;
+ horarios_user;
+ lista_clientes: Cliente[];
+ horario_empleados= [];
+ id =0;
+  constructor(public authService: AuthService,public httpClient: HttpClient, private clienteServices: ClienteService, private toastr: ToastrService
   ) {
-
+    
+    this.httpClient.get( this.API_ENDPOINT+'/petya-clientes').subscribe(
+      ( data:Cliente[]) => {
+        this.lista_clientes = data ; 
+        let empleados = this.authService.userData;
+       this.lista_clientes.forEach(element => {
+         if(element.correo==empleados.email){
+          this.id = 1;
+         }
+       })      
+      },(error)=>{
+        this.toastr.error("Ha ocurrido un error!");
+        console.log(error);
+      })
 
 
   }
@@ -47,7 +69,7 @@ export class IndexComponent implements OnInit {
 
   }
 
-  id = 0;
+
   /*seleccionarTodo() {
    // servicio para select * from clientes
     this.clienteServices.select().subscribe((data: Cliente[]) => {
