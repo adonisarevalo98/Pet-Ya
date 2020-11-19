@@ -25,7 +25,10 @@ import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/emp
 import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
 import { RecepcionComponent } from './components/recepcion/recepcion.component';
 import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
-
+import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
+import { DashboardGoogleComponent } from './components/dashboard-google/dashboard-google.component';
+import {FrmCitaComponent} from './components/frm-cita/frm-cita.component';
+import {TablaCitasComponent} from './components/frm-cita/tabla-citas/tabla-citas.component';
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
@@ -34,23 +37,28 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'empleado', component: EmpleadoComponent },
-  { path: 'crear-empleado', component: CrearEmpleadoComponent },
-  { path: 'listar-empleado', component: ListarEmpleadosComponent },
-  { path: 'administrador', component: AdministradorComponent },
+  { path: 'empleado', component: EmpleadoComponent,canActivate:[AuthGuard] },
+  { path: 'crear-empleado', component: CrearEmpleadoComponent,canActivate:[AuthGuard] },
+  { path: 'listar-empleado', component: ListarEmpleadosComponent,canActivate:[AuthGuard] },
+  { path: 'administrador', component: AdministradorComponent,canActivate:[AuthGuard] },
   { path: 'administrador/:id', component: CrearEmpleadoComponent },
-  { path: 'crear-horarios', component: CrearHorariosComponent },
-  { path: 'listar-horarios', component: ListarHorariosComponent },
-  { path: 'mis-horarios', component: EmpleadoHorariosComponent },
-  { path: 'control-horarios/:id', component: CrearHorariosComponent },
-  { path: 'agregar-cliente', component: AgregarClienteComponent },
-  { path: 'editar-cliente', component: EditarClienteComponent },
-  {path:'editar-cliente/:id',component:EditarClienteComponent,canActivate:[AuthGuard]},
-  { path: 'dashboard-cliente', component: DashboardClienteComponent },
-  { path: 'listar-citas', component: ListarCitasComponent },
-  { path: 'empleado-citas', component: EmpleadoCitasComponent },
-  { path: 'empleado-diagnosticos', component: EmpleadoDiagnosticosComponent },
+  { path: 'crear-horarios', component: CrearHorariosComponent,canActivate:[AuthGuard] },
+  { path: 'listar-horarios', component: ListarHorariosComponent,canActivate:[AuthGuard] },
+  { path: 'mis-horarios', component: EmpleadoHorariosComponent,canActivate:[AuthGuard] },
+  { path: 'control-horarios/:id', component: CrearHorariosComponent,canActivate:[AuthGuard] },
+  { path: 'agregar-cliente', component: AgregarClienteComponent,canActivate:[AuthGuard] },
+  { path: 'editar-cliente', component: EditarClienteComponent,canActivate:[AuthGuard] },
+  {path:'editar-cliente/:id',component:EditarClienteComponent},
+  { path: 'dashboard-cliente', component: DashboardClienteComponent,canActivate:[AuthGuard] },
+  { path: 'dashboard-google', component: DashboardGoogleComponent,canActivate:[AuthGuard] },
+  { path: 'listar-citas', component: ListarCitasComponent,canActivate:[AuthGuard] },
+  { path: 'empleado-citas', component: EmpleadoCitasComponent,canActivate:[AuthGuard] },
+  { path: 'empleado-diagnosticos', component: EmpleadoDiagnosticosComponent,canActivate:[AuthGuard] },
   { path: 'recepcion/:id', component: EditarCitasComponent },
+  { path: 'empleado/:id', component: EmpleadoDiagnosticosComponent },
+  { path: 'listar-diagnosticos', component: ListarDiagnosticosComponent,canActivate:[AuthGuard] },
+  { path: 'agregar-cita', component:FrmCitaComponent, canActivate:[AuthGuard]},
+  { path: 'tabla-cita', component:TablaCitasComponent, canActivate:[AuthGuard]}
 ];
 
 

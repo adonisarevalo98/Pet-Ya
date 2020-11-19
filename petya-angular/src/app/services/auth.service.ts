@@ -10,6 +10,7 @@ import { element } from 'protractor';
 import { EmailValidator } from '@angular/forms';
 import {ClienteService} from '../services/cliente.service';
 import { Cliente } from "../interfaces/cliente";
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +39,7 @@ export class AuthService {
     public ngZone: NgZone, // Servicio NgZone para eliminar la advertencia de alcance externo
     private httpClient: HttpClient,
     private clienteServices:ClienteService,
+    public toastr: ToastrService
 
     ) {    
 
@@ -100,7 +102,7 @@ export class AuthService {
         this.SetUserData(result.user);
       }).catch((error) => {
        // window.alert("Por favor revisar credenciales")
-         window.alert(error.message)
+       this.toastr.error('E-mail o contraseña incorrecta');
       })
     }else if(categoria=='E'){
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
@@ -110,7 +112,7 @@ export class AuthService {
         this.SetUserData(result.user);
       }).catch((error) => {
        // window.alert("Por favor revisar credenciales")
-         window.alert(error.message)
+       this.toastr.error('E-mail o contraseña incorrecta');
       })
     }else if(categoria=='R'){
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
@@ -120,7 +122,7 @@ export class AuthService {
         this.SetUserData(result.user);
       }).catch((error) => {
        // window.alert("Por favor revisar credenciales")
-         window.alert(error.message)
+       this.toastr.error('E-mail o contraseña incorrecta');
       })
     }else {
       this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
@@ -130,8 +132,9 @@ export class AuthService {
         this.SetUserData(result.user);
         console.log(result.user);
       }).catch((error) => {
+        this.toastr.error('Formato de credenciales incorrecto');
        // window.alert("Por favor revisar credenciales")
-         window.alert(error.message)
+         //window.alert(error.message)
       })
 
     }   

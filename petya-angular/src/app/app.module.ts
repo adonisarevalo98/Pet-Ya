@@ -44,6 +44,7 @@ import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/emp
 import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
 import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
 import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
+import { DashboardGoogleComponent } from './components/dashboard-google/dashboard-google.component';
 
 
 
@@ -77,7 +78,8 @@ import { EditarCitasComponent } from './components/recepcion/editar-citas/editar
     EmpleadoCitasComponent,
     EmpleadoDiagnosticosComponent,
     ListarDiagnosticosComponent,
-    EditarCitasComponent
+    EditarCitasComponent,
+    DashboardGoogleComponent
   ],
   imports: [
     BrowserModule,

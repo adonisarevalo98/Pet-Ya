@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CitaService } from '../../../services/cita.service';
 import { ClienteService } from '../../../services/cliente.service';
 import { Cliente } from '../../../interfaces/cliente';
-import {Router, ActivatedRoute } from '@angular/router'
-import {Cita}  from '../../../interfaces/cita'
+import {Router, ActivatedRoute } from '@angular/router';
+import {Cita}  from '../../../interfaces/cita';
 @Component({
   selector: 'app-listar-citas',
   templateUrl: './listar-citas.component.html',
@@ -18,6 +18,7 @@ import {Cita}  from '../../../interfaces/cita'
 export class ListarCitasComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:8000/api';
   lista_cita: Cita[];
+  
   cliente:any;
   
   constructor(  private citaService: CitaService,
@@ -28,20 +29,11 @@ export class ListarCitasComponent implements OnInit {
     ) {     
       this.httpClient.get( this.API_ENDPOINT+'/petya-citas').subscribe( 
         (data: Cita[]) =>{ 
+          
     this.lista_cita = data;
     let idcli = data;
     console.log(this.lista_cita);
-  this.clienteService.select().subscribe((dato: Cliente[]) =>{
-  let client = dato;
-  client.forEach(element => {
-    this.lista_cita.forEach(elemento =>{
-      if(element.id == elemento.id_cliente){
-        this.cliente == element.nombre;
-      }
-    })
-  });
-   
-  })
+ 
     });
     
 
@@ -49,5 +41,15 @@ export class ListarCitasComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  delete(id){
+    if(confirm('Esta seguro de eliminar esta cita?')){
+      this.citaService.delete(id).subscribe(data =>
+        {
+         this.toastr.success('Perfecto!', 'Cita eliminada.');
+        }, error =>{
+         this.toastr.error('Hey!', 'No se pudo eliminar el registro.');
+        })
+    }
+   
+  }
 }

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { EmpleadoService } from '../../../services/empleado.service';
 import {Router, ActivatedRoute } from '@angular/router'
 import { AuthService } from "../../../services/auth.service";
+import { FormsModule } from "@angular/forms";
 // toastr
 import { ToastrService } from 'ngx-toastr';
 import { Registro_Empleados } from 'src/app/interfaces/registro-empleados';
@@ -16,6 +17,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./crear-empleado.component.css']
 })
 export class CrearEmpleadoComponent implements OnInit {
+  E ="E";
+  A="A";
+  R="R";
+
 empleado: Registro_Empleados={
   nombres: null,
   apellidos: null,
@@ -49,7 +54,10 @@ empleados: Registro_Empleados[];
      this.editing = false;
    }
   }
-
+  onChange(event){
+    this.empleado.categoria = event;
+    //alert(event);
+  }
   ngOnInit() {
   }
 
@@ -67,8 +75,11 @@ empleados: Registro_Empleados[];
       
      }else{
       console.log(this.empleado);
+      //alert(this.empleado.categoria);
       this.empleadoService.insert(this.empleado).subscribe(
+        
         data => {
+          
          
           this.toastr.success('Completado!', 'Empleado registrado.');
          

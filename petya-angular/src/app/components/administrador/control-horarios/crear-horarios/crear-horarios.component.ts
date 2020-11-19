@@ -55,7 +55,11 @@ export class CrearHorariosComponent implements OnInit {
       this.editing = false;
     }
    }
-
+ 
+   onChange(event){
+    this.horario.empleado_id = event;
+    //alert(event);
+  }
   ngOnInit(): void {
   }
 

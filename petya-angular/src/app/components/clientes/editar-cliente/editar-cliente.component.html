@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,41 +70,52 @@
             <!--Fin Menu lateral-->
             <!--Formulario-->
             <div class="col-lg-9">
-                <div class="col-lg-6 mx-auto">
-                    <br>
-                    <div class="card">
-                        <div class="card-body">
-                            <form class="form-registro">
-                                <h1 class="titulo">Actualizar mis datos</h1>
-                                <br>
-                                <div class="form-group">
-                                    <input type="text" [(ngModel)]="edit.nombre" name="nombre" id=""
-                                        class="form-control input-sm mr-1" placeholder="Nombres" autocomplete="off">
+                <form #diagnForm="ngForm">
+                    <div class="col-lg-6 mx-auto">
+                        <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-registro">
+                                    <h1 class="titulo">Actualizar mis datos</h1>
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="text" required [(ngModel)]="edit.nombre" name="nombre" id=""
+                                            class="form-control input-sm mr-1" placeholder="Nombres" #nomC="ngModel" autocomplete="off">
+                                            <div *ngIf="(nomC.invalid && (nomC.dirty || nomC.touched))">
+                                                <p class="text-danger" *ngIf="nomC.errors.pattern">Formato de teléfono
+                                                    incorrecto</p>
+                                                <p class="text-danger" *ngIf="nomC.errors.required">Campo requerido</p>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" required [(ngModel)]="edit.correo" readonly name="correo" id=""
+                                            class="form-control" placeholder="Correo Electronico:">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" required pattern="[0-9]{4}[-][0-9]{4}" autocomplete="off"
+                                            [(ngModel)]="edit.telefono" name="telefono" id="" class="form-control"
+                                            #telC="ngModel" placeholder="Telefono">
+                                        <div *ngIf="(telC.invalid && (telC.dirty || telC.touched))">
+                                            <p class="text-danger" *ngIf="telC.errors.pattern">Formato de teléfono
+                                                incorrecto</p>
+                                            <p class="text-danger" *ngIf="telC.errors.required">Campo requerido</p>
+                                        </div>
+                                    </div>
     
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" [(ngModel)]="edit.correo" readonly name="correo" id=""
-                                        class="form-control" placeholder="Correo Electronico:">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="contra" id="" class="form-control"
-                                        placeholder="Contraseña">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" [(ngModel)]="edit.telefono" name="telefono" id=""
-                                        class="form-control" placeholder="Telefono">
-                                </div>
-                                <button type="submit" (click)="actualizarcliente()"
-                                    class="btn btn-reg btn-lg btn-block">Actualizar</button>
-                            </form>
+                                        <button class="btn btn-reg mr-3" (click)="actualizarcliente()"
+                                            [disabled]="!diagnForm.form.valid">Actualizar</button>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <!--Fin Formulario-->
         </div>
     </div>
-    
+
 </body>
 
 </html>

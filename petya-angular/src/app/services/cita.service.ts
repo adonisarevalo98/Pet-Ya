@@ -20,5 +20,8 @@ export class CitaService {
    savecita(objecita: Cita){
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.post( this.API_ENDPOINT + '/petya-citas', objecita,{headers: headers});
+}
+  delete(id){ 
+    return this.httpClient.delete(this.API_ENDPOINT+"/petya-citas/" + id);
   }
 }

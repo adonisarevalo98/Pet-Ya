@@ -78,7 +78,7 @@
                         <tbody>
                             <tr>
                                 <th>ID</th>
-                                <th>Cliente</th>
+                                <th>Mascota</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Estado</th>
@@ -88,17 +88,20 @@
                               <tr *ngFor="let cita of lista_cita">
 
                                 <td>{{cita.id}}</td>
-                                <td>{{cita.id_cliente}}</td>
+                                <td>{{cita.nombre_mascota}}</td>
                                 <td>{{cita.fecha_cita}}</td>
                                 <td>{{cita.hora}}</td>
                                 <td>{{cita.estado}}</td>
                                 <td>{{cita.id_empleado}}</td>
                                 <td>
-                                    <a class="btn btn-secondary text-white" data-toggle="modal"
+                                    <a class="btn btn-info text-white" data-toggle="modal"
                                         routerLink="/recepcion/{{cita.id}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                        
+                                    <a class="btn btn-danger text-white" data-toggle="modal"
+                                    (click)="delete(cita.id)">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                                 </td>
                             </tr>
                            

@@ -10,6 +10,7 @@ import {CitaService} from '../../services/cita.service';
 import { threadId } from 'worker_threads';
 import {Horario} from '../../interfaces/horario';
 import {HorarioService} from '../../services/horario.service';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-frm-cita',
@@ -58,7 +59,7 @@ export class FrmCitaComponent implements OnInit {
 
  
   
-  constructor(private frcitaservice: FrmcitaService, public toastr: ToastrService, private citaservice: CitaService, private horaservice: HorarioService) { 
+  constructor(private frcitaservice: FrmcitaService, public toastr: ToastrService, private citaservice: CitaService, private horaservice: HorarioService, public authService: AuthService) { 
     this.comboempleados();
     this.comboclientes();    
   }
@@ -68,8 +69,7 @@ export class FrmCitaComponent implements OnInit {
    //Metodo que se encarga de mandar el objeto frmcita al service 
    saveFrmcita(){
      //Guardando el tabla formulario-cita
-    this.frcitaservice.save(this.frmcita).subscribe(data =>{
-      this.toastr.success("frmCita guardada")
+    this.frcitaservice.save(this.frmcita).subscribe(data =>{    
       this.getidMayor();             
       //console.log(data);
     }, error => {
@@ -111,6 +111,7 @@ export class FrmCitaComponent implements OnInit {
       if(data != null){
         this.horarios = null;
         this.horarios = data.filter(horar => horar.empleado_id == numero);
+        console.log(this.horarios);
       }
       else{
         this.horarios = null;

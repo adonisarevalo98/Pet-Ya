@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AuthService } from "../../../services/auth.service";
 import {FormularioCita} from "../../../interfaces/formulario-citas"
 import {Cita} from "../../../interfaces/cita"
+import { FormsModule } from "@angular/forms";
 import {Router, ActivatedRoute } from '@angular/router'
 import {CitaService} from "../../../services/cita.service";
 import {FormularioCitaService} from "../../../services/formulario-cita.service";
@@ -84,11 +85,12 @@ export class EditarCitasComponent implements OnInit {
 
   ActualizarCita(){
     if(this.editing){
-      console.log(this.cita);
+      console.log(this.formulariocita);
      this.citaService.put(this.cita).subscribe(
        data => {
         
          this.toastr.success('Perfecto!', 'Cita actualizada.');
+         this.router.navigate(['listar-citas']);
         
        }, error =>{
          this.toastr.error('Este...', 'Parece que ocurrio un error.');
