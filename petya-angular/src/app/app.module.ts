@@ -36,6 +36,8 @@ import { CrearHorariosComponent } from './components/administrador/control-horar
 import { ListarHorariosComponent } from './components/administrador/control-horarios/listar-horarios/listar-horarios.component';
 import { ControlHorariosComponent } from './components/administrador/control-horarios/control-horarios.component';
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
+import { FrmCitaComponent } from './components/frm-cita/frm-cita.component';
+import { TablaCitasComponent } from './components/frm-cita/tabla-citas/tabla-citas.component';
 import { RecepcionComponent } from './components/recepcion/recepcion.component';
 import { ListarCitasComponent } from './components/recepcion/listar-citas/listar-citas.component';
 import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/empleado-citas.component';
@@ -69,6 +71,8 @@ import { DashboardGoogleComponent } from './components/dashboard-google/dashboar
     ListarHorariosComponent,
     ControlHorariosComponent,
     DashboardClienteComponent,
+    FrmCitaComponent,
+    TablaCitasComponent,
     RecepcionComponent,
     ListarCitasComponent,
     EmpleadoCitasComponent,
