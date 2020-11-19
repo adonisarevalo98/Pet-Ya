@@ -38,6 +38,12 @@ import { ControlHorariosComponent } from './components/administrador/control-hor
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
 import { FrmCitaComponent } from './components/frm-cita/frm-cita.component';
 import { TablaCitasComponent } from './components/frm-cita/tabla-citas/tabla-citas.component';
+import { RecepcionComponent } from './components/recepcion/recepcion.component';
+import { ListarCitasComponent } from './components/recepcion/listar-citas/listar-citas.component';
+import { EmpleadoCitasComponent } from './components/empleado/empleado-citas/empleado-citas.component';
+import { EmpleadoDiagnosticosComponent } from './components/empleado/empleado-diagnosticos/empleado-diagnosticos.component';
+import { ListarDiagnosticosComponent } from './components/empleado/listar-diagnosticos/listar-diagnosticos.component';
+import { EditarCitasComponent } from './components/recepcion/editar-citas/editar-citas.component';
 
 
 
@@ -65,7 +71,13 @@ import { TablaCitasComponent } from './components/frm-cita/tabla-citas/tabla-cit
     ControlHorariosComponent,
     DashboardClienteComponent,
     FrmCitaComponent,
-    TablaCitasComponent
+    TablaCitasComponent,
+    RecepcionComponent,
+    ListarCitasComponent,
+    EmpleadoCitasComponent,
+    EmpleadoDiagnosticosComponent,
+    ListarDiagnosticosComponent,
+    EditarCitasComponent
   ],
   imports: [
     BrowserModule,

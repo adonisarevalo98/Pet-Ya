@@ -14,7 +14,7 @@ export class FrmcitaService {
   }
 
   get(){
-    return this.httpClient.get(this.API_ENDPOINT + '/petya-formcita')
+    return this.httpClient.get(this.API_ENDPOINT + '/petya-formcita');
   }
 
   getEmpleados(){

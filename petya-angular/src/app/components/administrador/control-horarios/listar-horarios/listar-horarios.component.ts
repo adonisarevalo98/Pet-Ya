@@ -5,6 +5,7 @@ import { Horario } from '../../../../interfaces/horario'
 import { HorarioService} from '../../../../services/horario.service'
 import { EmailValidator } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService} from '../../../../services/auth.service'
 @Component({
   selector: 'app-listar-horarios',
   templateUrl: './listar-horarios.component.html',
@@ -16,6 +17,7 @@ export class ListarHorariosComponent implements OnInit {
   constructor(
     private horarioService: HorarioService,
    private httpClient: HttpClient,
+   public authService: AuthService,
    private toastr: ToastrService
   ) { 
 

@@ -1,6 +1,19 @@
+<div class="consulta" id="servicios">
+  <div class="separador">
+    <h6 class="display-4">Dashboard</h6>
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" id="v-pills-empleado-tab" data-toggle="pill"
+        routerLinkActive="active" role="tab" aria-controls="v-pills-empleado" aria-selected="true"  routerLink="/listar-citas">listar-citas</a>
+        <a class="nav-link" id="v-pills-empleado-tab" data-toggle="pill" routerLink="/mis-horarios"
+        routerLinkActive="active"  role="tab" aria-controls="v-pills-empleado" aria-selected="true">Mis Horarios</a>      
+        <a class="nav-link" id="v-pills-empleado-tab" data-toggle="pill" routerLink="/empleado"
+        routerLinkActive="active"  role="tab" aria-controls="v-pills-empleado" aria-selected="true">Mi perfil</a>      
+      </div>
+  </div>
+</div>
 
 
-<!-- Top navigation -->
+<!-- Top navigation
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap ">
     
   <ul class="nav flex-md">
@@ -15,7 +28,7 @@
             <i class="fas fa-search"></i>Buscador
         </a>
     </li>
-    <!-- Calling SignOut() Api from AuthService -->
+
     <li class="nav-item">
       <a class="nav-link" (click)="authService.SignOut()">
         <i class="fas fa-sign-out-alt"></i>Log out
@@ -24,18 +37,17 @@
   </ul>
 </nav>
 
-  <!-- Sidebar navigation -->
+
   <div class="container-fluid">
     <div class="row">
   
-      <!-- Main content -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="inner-adjust">
   
           <div class="pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">User Profile</h1>
           </div>
-          <!-- Show user data when logged in -->
+
           <div class="row" *ngIf="authService.userData as user">
             <div class="col-md-12">
               <div class="media">
@@ -59,4 +71,4 @@
   <br>
   
 
-  
+-->

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from '../../../services/empleado.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Horario } from '../../../interfaces/horario'
 import { AuthService } from "../../../services/auth.service";
+import { Horario } from '../../../interfaces/horario';
 import { element } from 'protractor';
-import { Registro_Empleados} from '../../../interfaces/registro-empleados'
-import { HorarioService} from '../../../services/horario.service'
+import { Registro_Empleados} from '../../../interfaces/registro-empleados';
+import { HorarioService} from '../../../services/horario.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -27,12 +27,12 @@ export class EmpleadoHorariosComponent implements OnInit {
     private horarioService: HorarioService) {
       //--------------------------------------------------
       let id = 0;
-      let empleados = this.authService.userData;
+      
       
       this.httpClient.get( this.API_ENDPOINT+'/petya-empleados').subscribe(
       ( data:Registro_Empleados[]) => {
         this.lista_empleados = data ; 
-      
+        let empleados = this.authService.userData;
        this.lista_empleados.forEach(element => {
          if(element.correo==empleados.email){
           id = element.id;

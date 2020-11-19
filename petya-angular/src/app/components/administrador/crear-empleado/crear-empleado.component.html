@@ -1,50 +1,129 @@
-<div class="card">
-    <div class="card-body">
-        <h3>Datos de empleado</h3>
-        <div >
-            <!-- TO UPDATE -->
+<html>
 
-            <div class="form-group">
-                <input type="text" class="form-control" name="nombres" 
-                    [(ngModel)]="empleado.nombres" placeholder="Nombres">
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard cliente</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+        integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+</head>
 
-            <div class="form-group">
-                <input type="text" class="form-control" name="apellidos" 
-                    [(ngModel)]="empleado.apellidos" placeholder="Apellidos">
+<body>
+    <!--INICIO MENU -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="../../assets/img/logo.png" width="170" height="70" loading="lazy">
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/index">Inicio<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">{{authService.userData.email}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="authService.SignOut()">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--FIN MENU -->
+    <div class="container-fluid" id="header">
+        <div class="row bg-vet">
+            <div class="col-lg-8">
+                <div class="fondo mr-5"></div>
             </div>
-
-            <div class="form-group">
-                <input type="text" class="form-control" name="correo" 
-                    [(ngModel)]="empleado.correo" placeholder="Correo">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="foto_perfil" 
-                    [(ngModel)]="empleado.foto_perfil" placeholder="foto_perfil">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="telefono" 
-                    [(ngModel)]="empleado.telefono" placeholder="Teléfono (0000-0000)">
-            </div>
-            <div class="form-group">
-                <label for="inputState">Categoria</label>
-                <select id="inputState" class="form-control" [(ngModel)]="empleado.categoria">
-                  <option selected>E</option>
-                  <option>A</option>
-                </select>
-            </div>
-            
-            
-            <div class="form-group">
-                <button class="btn btn-primary" (click)="insertEmpleado()" >
-                    <i class="fas fa-plus-circle"></i> Registrar
-                </button>
-                <button class="btn btn-secondary" type="reset" >
-                    <i class="fas fa-sync-alt"></i> Reset
-                </button>
+            <div class="col-lg-4 my-auto">
+                <div class="parrafo">
+                    <p>Emergencia?<br>
+                        2265-7895</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!--Contenido-->
+    <div class="container-fluid">
+        <div class="row">
+            <!--Menu lateral-->
+            <div class="col-lg-3">
+                <app-administrador></app-administrador>
+            </div>
+            <!--Fin Menu lateral-->
+            <!--Formulario-->
+            <div class="col-lg-9">
+                <div class="col-lg-6 mx-auto">
+                    <div class="card mt-5 mb-5">
+                        <div class="card-body">
+                            <h3>Datos de empleado</h3>
+                            <div>
+                                <!-- TO UPDATE -->
 
-  
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="nombres"
+                                        [(ngModel)]="empleado.nombres" placeholder="Nombres">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="apellidos"
+                                        [(ngModel)]="empleado.apellidos" placeholder="Apellidos">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="correo" [(ngModel)]="empleado.correo"
+                                        placeholder="Correo">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="foto_perfil"
+                                        [(ngModel)]="empleado.foto_perfil" placeholder="foto_perfil">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="telefono"
+                                        [(ngModel)]="empleado.telefono" placeholder="Teléfono (0000-0000)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputState">Categoria</label>
+                                    <select id="inputState" class="form-control" [(ngModel)]="empleado.categoria">
+                                        <option selected>E</option>
+                                        <option>R</option>
+                                        <option>A</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-reg mr-3" (click)="insertEmpleado()">
+                                        <i class="fas fa-plus-circle"></i> Registrar
+                                    </button>
+                                    <button class="btn btn-secondary" type="reset">
+                                        <i class="fas fa-sync-alt"></i> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Fin Formulario-->
+        </div>
+    </div>
+
+</body>
+
+</html>

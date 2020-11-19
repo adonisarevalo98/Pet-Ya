@@ -8,13 +8,13 @@ export interface FrmCita{
     edad:string;
     sexo:string;
     color:string;
-    vacunacion?:string;
+    vacunacion:string;
     motivo:string;
-    vacunas_realizadas?:string;
+    vacunas_realizadas:string;
     id_empleado:number;
-    peso:string;
-    pulso:string;
-    temperatura:string;
+    peso?:string;
+    pulso?:string;
+    temperatura?:string;
     cliente_id:number;
     created_at?: string;
     updated_at?: string;

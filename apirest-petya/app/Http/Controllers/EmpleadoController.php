@@ -61,8 +61,8 @@ class EmpleadoController extends Controller
         //seleccionando registro segun id para modifircarlo
         $empleado = Empleado::find($id);
         //asignando datos del request al objeto
-        $Empleado->nombres = $request->input('nombre');
-        $Empleado->apellidos = $request->input('apellidos');
+        $empleado->nombres = $request->input('nombres');
+        $empleado->apellidos = $request->input('apellidos');
         $empleado->correo = $request->input('correo');
         $empleado->foto_perfil = $request->input('foto_perfil');
         $empleado->telefono = $request->input('telefono');
