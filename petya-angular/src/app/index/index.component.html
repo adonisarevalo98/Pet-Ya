@@ -54,7 +54,7 @@
                     <a class="nav-link" routerLink="/editar-cliente">Dashboard</a>
                 </li>
                 <li class="nav-item" *ngIf="id==0">
-                    <a class="nav-link" routerLink="/dashboard-google">Dashboard</a>
+                    <a class="nav-link" routerLink="/agregar-cita">Dashboard</a>
                 </li>
                 <li class="nav-item" *ngIf="authService.userData as user">
                     <a class="nav-link" (click)="authService.SignOut()">
