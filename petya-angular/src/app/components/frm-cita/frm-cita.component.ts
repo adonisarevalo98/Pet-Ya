@@ -34,11 +34,11 @@ export class FrmCitaComponent implements OnInit {
     peso:null,
     pulso:null,
     temperatura:null,
-    cliente_id:null
+    cliente_id: parseInt(localStorage.getItem("user"))
   };
   
   objecita: Cita ={
-    id_cliente:null,
+    id_cliente:parseInt(localStorage.getItem("user")),
     nombre_mascota:null,
     fecha_cita:null,
     hora:null,
@@ -92,6 +92,7 @@ export class FrmCitaComponent implements OnInit {
   comboempleados(){
     this.frcitaservice.getEmpleados().subscribe((data: Registro_Empleados[]) =>{
       this.empleados = data;
+      this.empleados = this.empleados.filter(emp => emp.categoria == "E");
     }, error =>{
       this.toastr.error("Error combo empleados!");      
     });

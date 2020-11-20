@@ -71,20 +71,11 @@
             <!--Formulario-->
             <div class="col-lg-9">
               <div class="container mt-3">    
-                <h2>Nueva cita</h2><button class="btn btn-light float-right" >Ver citas</button>
+                <h2>Nueva cita</h2>
                 <br>
-                <br>
+                
                 <form #citaForm="ngForm">     
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Cliente</label>
-                            <select required [(ngModel)]="frmcita.cliente_id" [(ngModel)]="objecita.id_cliente" name="clien" id="" class="form-control" #client="ngModel">
-                              <option *ngFor="let clie of clientes" [ngValue]="clie.id">{{clie.nombre}}</option>                
-                            </select>
-                            <div *ngIf="(client.invalid && (client.dirty || client.touched))">                  
-                              <p class="text-danger" *ngIf="client.errors.required">Campo requerido</p>
-                            </div>
-                          </div>
+                      <div class="form-row">                      
                         <div class="form-group col-md-6">
                             <label for="empleado">Empleado</label>
                             <select [(ngModel)]="frmcita.id_empleado" required [(ngModel)]="objecita.id_empleado" name="emplea" id="" class="form-control" #emple (change)="combohorario(emple.value)" #emplea="ngModel">
