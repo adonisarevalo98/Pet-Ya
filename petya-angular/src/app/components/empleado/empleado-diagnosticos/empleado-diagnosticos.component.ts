@@ -16,7 +16,8 @@ import { element } from 'protractor';
   styleUrls: ['./empleado-diagnosticos.component.css']
 })
 export class EmpleadoDiagnosticosComponent implements OnInit {
-  
+  F="F";
+
   cita: Cita={
     id_cliente:null,
     nombre_mascota:null,
@@ -105,7 +106,10 @@ export class EmpleadoDiagnosticosComponent implements OnInit {
         })
      
     }
-
+    onChange(event){
+      this.cita.estado = event;
+      //alert(event);
+    }
   ngOnInit(): void {
   }
 

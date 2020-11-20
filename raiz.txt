@@ -1,0 +1,12 @@
+Modulos necesarios:
+
+1- npm install
+2- npm install bootstrap jquery --save
+3- npm install firebase @angular/fire
+4- npm install ngx-toastr --save
+5- npm install @popperjs/core
+6- npm install jspdf@1.5.3 html2canvas
+
+
+7- npm install @types/jspdf @types/html2canvas -D
+

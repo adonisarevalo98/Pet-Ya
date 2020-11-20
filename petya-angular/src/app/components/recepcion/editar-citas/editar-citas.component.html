@@ -131,7 +131,7 @@
                                     <div class="form-row">
 
                                         <div class="form-group col-md-4">
-                                            <p>Peso</p>
+                                            <p>Peso(Lb.)</p>
                                             <input type="text" required pattern="^\d{1,6}\.\d{0,2}$"
                                                 class="form-control" name="peso" autocomplete="off"
                                                 [(ngModel)]="formulariocita.peso" #pesoC="ngModel" placeholder="00.00">
@@ -145,7 +145,7 @@
 
 
                                         <div class="form-group col-md-4">
-                                            <p>Pulso</p>
+                                            <p>Pulso(p/m)</p>
                                             <input type="text" required pattern="^\d{1,6}\.\d{0,2}$"
                                                 class="form-control" name="pulso" autocomplete="off"
                                                 [(ngModel)]="formulariocita.pulso" #pulsoC="ngModel"
@@ -160,7 +160,7 @@
                                         </div>
 
                                         <div class="form-group col-md-4">
-                                            <p>Temperatura</p>
+                                            <p>Temperatura(°c)</p>
                                             <input type="text" required pattern="^\d{1,6}\.\d{0,2}$"
                                                 class="form-control" name="temperatura" autocomplete="off"
                                                 [(ngModel)]="formulariocita.temperatura" #tempC="ngModel"
@@ -174,11 +174,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group ">
-                                        <label for="inputState">Estado de la cita</label>
-                                        <select id="inputState" class="form-control" [(ngModel)]="cita.estado">
-                                            <option selected>proceso</option>
-                                            <option>cancelado</option>
+                                    <div class="form-group">
+                                        <label for="inputState">Estado</label>
+                                        <select (change)="onChange($event.target.value)" id="inputState" class="form-control" #opciC="ngModel" [(ngModel)]="cita.estado">
+                                            <option value="P" selected>{{P}}</option>
+                                            <option value="C">{{C}}</option>
+                                           
                                         </select>
                                     </div>
                                     <div class="form-group">

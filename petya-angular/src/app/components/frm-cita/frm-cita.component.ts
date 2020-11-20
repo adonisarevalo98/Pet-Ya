@@ -67,12 +67,15 @@ export class FrmCitaComponent implements OnInit {
   ngOnInit(): void {
   }
    //Metodo que se encarga de mandar el objeto frmcita al service 
+  
    saveFrmcita(){
      //Guardando el tabla formulario-cita
+    
     this.frcitaservice.save(this.frmcita).subscribe(data =>{    
       this.getidMayor();             
       //console.log(data);
     }, error => {
+      console.log(this.frmcita);
       console.log(error);
       this.toastr.error("Error al guardar frmcita");
     });  

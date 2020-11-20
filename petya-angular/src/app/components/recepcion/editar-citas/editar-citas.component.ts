@@ -14,6 +14,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./editar-citas.component.css']
 })
 export class EditarCitasComponent implements OnInit {
+  P = "P";
+  C = "C";
+
   cita: Cita={
     id_cliente:null,
     nombre_mascota:null,
@@ -78,7 +81,10 @@ export class EditarCitasComponent implements OnInit {
       this.editing = false;
     }
    }
-  
+   onChange(event){
+    this.cita.estado = event;
+    //alert(event);
+  }
 
   ngOnInit(): void {
   }
@@ -86,6 +92,8 @@ export class EditarCitasComponent implements OnInit {
   ActualizarCita(){
     if(this.editing){
       console.log(this.formulariocita);
+      console.log(this.cita);
+
      this.citaService.put(this.cita).subscribe(
        data => {
         

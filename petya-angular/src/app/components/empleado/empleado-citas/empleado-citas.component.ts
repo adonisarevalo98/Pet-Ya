@@ -45,7 +45,7 @@ export class EmpleadoCitasComponent implements OnInit {
         {
           this.lista_cita = datos;
           this.lista_cita.forEach((element) => {
-            if((element.id_empleado == id) && (element.estado=="proceso")){
+            if((element.id_empleado == id) && (element.estado=="P")){
               this.cita_empleados.push(element) ;
               console.log(this.cita_empleados)
             }

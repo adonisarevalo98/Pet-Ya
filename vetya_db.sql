@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2020 a las 17:42:05
+-- Tiempo de generación: 20-11-2020 a las 04:33:09
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -48,7 +48,7 @@ CREATE TABLE `citas` (
   `nombre_mascota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_cita` date NOT NULL,
   `hora` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_cita` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_cita` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `especificaciones` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `estado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_empleado` int(11) NOT NULL,
@@ -56,14 +56,6 @@ CREATE TABLE `citas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `citas`
---
-
-INSERT INTO `citas` (`id`, `id_cliente`, `nombre_mascota`, `fecha_cita`, `hora`, `tipo_cita`, `especificaciones`, `estado`, `id_empleado`, `id_formulario`, `created_at`, `updated_at`) VALUES
-(2, 1, 'aa', '2020-10-14', '10:00', 'aa', 'aa', 'proceso', 1, 1, NULL, '2020-10-30 02:45:30'),
-(3, 1, 'bb', '2020-10-25', '12:00', 'bb', 'bb', 'proceso', 2, 2, NULL, '2020-10-30 02:50:09');
 
 -- --------------------------------------------------------
 
@@ -88,10 +80,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `correo`, `foto_perfil`, `telefono`, `password`, `categoria`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'jk@hg.com', NULL, NULL, NULL, NULL, '2020-10-16 02:32:44', '2020-10-16 02:32:44'),
+(1, 'adonis', 'adoniscortez98@hotmail.com', NULL, NULL, NULL, NULL, '2020-10-16 02:32:44', '2020-10-16 02:32:44'),
 (3, NULL, 'ab@ab.com', NULL, NULL, NULL, NULL, '2020-10-16 06:24:18', '2020-10-16 06:24:18'),
 (5, NULL, 'as@as.com', NULL, NULL, NULL, NULL, '2020-10-17 09:04:51', '2020-10-17 09:04:51'),
-(6, 'adprueba', 'adprueba@mail.com', NULL, '1234-5678', NULL, NULL, '2020-10-19 01:28:58', '2020-10-19 01:28:58');
+(6, 'adprueba', 'adprueba@mail.com', NULL, '1234-5678', NULL, NULL, '2020-10-19 01:28:58', '2020-10-19 01:28:58'),
+(12, 'David garcia', 'davidg@hotmail.com', NULL, '12345678', NULL, NULL, '2020-11-20 07:52:00', '2020-11-20 07:52:00'),
+(13, 'Javier Caceres', 'javic@hotmail.com', NULL, '12345678', NULL, NULL, '2020-11-20 07:52:39', '2020-11-20 07:52:39');
 
 -- --------------------------------------------------------
 
@@ -121,14 +115,6 @@ CREATE TABLE `diagnosticos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `diagnosticos`
---
-
-INSERT INTO `diagnosticos` (`id`, `cliente_id`, `nombre_mascota`, `especie`, `raza`, `edad`, `sexo`, `color`, `vacunacion`, `motivo`, `vacunas_realizadas`, `peso`, `pulso`, `temperatura`, `diagnostico_final`, `tratamiento`, `empleado_id`, `created_at`, `updated_at`) VALUES
-(5, 1, 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'ee', NULL, NULL, NULL, NULL, NULL, 2, '2020-10-30 02:39:39', '2020-10-30 02:39:39'),
-(6, 1, 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'ee', NULL, NULL, NULL, NULL, NULL, 2, '2020-10-30 02:50:09', '2020-10-30 02:50:09');
-
 -- --------------------------------------------------------
 
 --
@@ -153,15 +139,12 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `nombres`, `apellidos`, `correo`, `foto_perfil`, `telefono`, `password`, `categoria`, `created_at`, `updated_at`) VALUES
-(1, 'adonis', 'arevalo', 'admin@admin.com', '', '2345-6789', '', 'A', NULL, NULL),
-(2, 'jose', 'martinez', 'ab@ab.com', '', '2145-6798', '', 'E', NULL, NULL),
-(3, 'usr1', 'apel1', 'correo1@email.com', NULL, '1234-7898', NULL, 'E', '2020-10-17 02:33:19', '2020-10-17 02:33:19'),
-(4, 'usr222', 'apell2', 'mail2@mail2.com', NULL, '1234-5678', NULL, 'R', '2020-10-17 02:38:02', '2020-10-18 02:39:31'),
-(5, 'a', 'a', 'a', NULL, '1', NULL, 'E', '2020-10-17 02:39:31', '2020-10-17 02:39:31'),
-(10, 'prueba44', 'prueba44', 'adonis@gmail.com', NULL, '1234-2345', NULL, 'R', '2020-10-17 10:31:58', '2020-10-18 23:40:56'),
-(11, 'a', 'a', 'a', 'a', '12', NULL, 'E', '2020-10-17 11:10:28', '2020-10-17 11:10:28'),
-(12, 'prueba6', 'prueba6', 'correo6@correo6.com', NULL, '1234-2345', NULL, 'E', '2020-10-18 01:37:44', '2020-10-18 01:37:44'),
-(13, 'aa', 'aaaaa', 'bbbbb', NULL, '1212-1212', NULL, 'E', '2020-10-18 02:07:48', '2020-10-28 03:27:11');
+(1, 'Roberto', 'arevalo', 'admin@petya.com', '', '2345-6789', '', 'A', NULL, NULL),
+(2, 'Jose', 'martinez', 'empleado1@petya.com', '', '2145-6798', '', 'E', NULL, NULL),
+(3, 'Alfredo', 'gomez', 'empleado2@petya.com', NULL, '1234-7898', NULL, 'E', '2020-10-17 02:33:19', '2020-10-17 02:33:19'),
+(4, 'Andres', 'apell2', 'empleado3@petya.com', NULL, '1234-5678', NULL, 'R', '2020-10-17 02:38:02', '2020-10-18 02:39:31'),
+(5, 'a', 'a', 'a@a.com', NULL, '1234-5678', NULL, 'E', '2020-10-17 02:39:31', '2020-11-20 08:40:27'),
+(10, 'prueba44', 'prueba44', 'adonis@gmail.com', NULL, '1234-2345', NULL, 'R', '2020-10-17 10:31:58', '2020-10-18 23:40:56');
 
 -- --------------------------------------------------------
 
@@ -191,14 +174,6 @@ CREATE TABLE `formulario_citas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `formulario_citas`
---
-
-INSERT INTO `formulario_citas` (`id`, `fecha_cita`, `hora`, `nombre_mascota`, `especie`, `raza`, `edad`, `sexo`, `color`, `vacunacion`, `motivo`, `vacunas_realizadas`, `id_empleado`, `peso`, `pulso`, `temperatura`, `cliente_id`, `created_at`, `updated_at`) VALUES
-(1, '2020-10-14', '10:00', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 1, NULL, NULL, NULL, 1, NULL, '2020-10-29 05:00:29'),
-(2, '2020-10-25', '12:00', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'bb', 'ee', 2, NULL, NULL, NULL, 1, NULL, '2020-10-28 23:55:10');
-
 -- --------------------------------------------------------
 
 --
@@ -220,8 +195,10 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id`, `dia`, `hora_inicio`, `hora_fin`, `empleado_id`, `created_at`, `updated_at`) VALUES
-(1, 'Lunes', '7:00', '8:00', 11, NULL, '2020-10-28 03:28:12'),
-(2, 'Lunes', '9:00', '10:00', 3, NULL, '2020-10-18 07:05:15');
+(2, 'Lunes', '9:00', '10:00', 2, NULL, '2020-10-18 07:05:15'),
+(5, 'Martes', '9:00', '10:00', 2, '2020-11-20 07:24:02', '2020-11-20 07:24:02'),
+(6, 'Lunes', '10:00', '11:00', 3, '2020-11-20 07:24:43', '2020-11-20 07:24:43'),
+(7, 'Martes', '10:00', '11:00', 3, '2020-11-20 07:24:58', '2020-11-20 07:24:58');
 
 -- --------------------------------------------------------
 
@@ -321,37 +298,37 @@ ALTER TABLE `asuetos`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `diagnosticos`
 --
 ALTER TABLE `diagnosticos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `formulario_citas`
 --
 ALTER TABLE `formulario_citas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
