@@ -24,7 +24,7 @@
                     android:icon="@drawable/editar_cuenta"
                     android:title="@string/editarcuenta" />
                 <item
-                    android:id="@+id/cerrarsesion"
+                    android:id="@+id/logoutBTN"
                     android:icon="@drawable/cerrar_sesion"
                     android:title="@string/cerrarsesion" />
                 </group>
