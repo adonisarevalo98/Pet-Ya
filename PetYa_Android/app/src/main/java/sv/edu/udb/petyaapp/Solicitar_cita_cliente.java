@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    ScrollView scrollView;
 
     //Variable para gestionar FirebaseAuth
     private FirebaseAuth mAuth;
@@ -83,6 +85,12 @@ gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 
         navigationView.setCheckedItem(R.id.solicitar_cita);  //item seleccionado por defecto
         /*******End Menu********/
+
+        /*******scroll view********/
+        scrollView = findViewById(R.id.mainScroll);
+        scrollView.setVerticalScrollBarEnabled(false);
+
+        /*******end scroll view********/
 
     }
 

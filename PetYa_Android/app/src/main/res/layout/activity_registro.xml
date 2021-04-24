@@ -7,7 +7,6 @@
     tools:context=".Registro"
     android:orientation="vertical"
     android:background="@color/black"
-    android:alpha="0.75"
     android:padding="20dp">
 
     <ImageView
@@ -22,11 +21,13 @@
         android:text="@string/bienvenido"
         android:transitionName="logo_text"
         android:textSize="40sp"
+        android:textColor="@color/gray"
         android:fontFamily="@font/roboto_black"
         android:layout_marginTop="-20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/gray"
         android:text="@string/slogan_registro"
         android:textSize="18sp"/>
 <ScrollView
@@ -43,12 +44,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/name"
             android:hint="@string/nombrecompleto"
+            android:textColorHint="@color/gray"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nombreET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -58,30 +61,36 @@
             android:layout_height="wrap_content"
             android:id="@+id/correo"
             android:hint="@string/email"
+            android:textColorHint="@color/gray"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password"
             android:hint="@string/pass"
-            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/gray"
 
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword">
+                android:inputType="textPassword"
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -91,13 +100,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/telefono"
             android:hint="@string/telefono"
+            android:textColorHint="@color/gray"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/telefonoET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number">
+                android:inputType="number"
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 

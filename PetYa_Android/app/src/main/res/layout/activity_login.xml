@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.75"
     android:background="@color/black"
+
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".Login">
@@ -21,9 +21,11 @@
         android:id="@+id/logo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:fontFamily="@font/roboto_black"
         android:text="@string/bienvenida"
 
+        android:textColor="#6C6B6B"
         android:textSize="30sp"
         android:transitionName="logo_text" />
 
@@ -32,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/antic"
-
+        android:textColor="#6C6B6B"
         android:text="@string/sigin"
 
         android:textSize="18sp" />
@@ -50,14 +52,16 @@
             android:id="@+id/correo"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:hint="@string/email">
+            android:hint="@string/email"
+            android:textColorHint="@color/gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -69,14 +73,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/pass"
-            app:passwordToggleEnabled="true">
+            android:textColorHint="@color/gray"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                >
+                android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
 

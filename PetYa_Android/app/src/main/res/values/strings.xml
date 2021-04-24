@@ -36,4 +36,20 @@
     <string name="telefono">Teléfono</string>
     <string name="tienescuenta">Ya tienes cuenta? Inicia sesión</string>
     <!--End Registro-->
+
+    <!--Formulario hacer cita-->
+    <string name="veterinarios">Veterinario(listado de veterinarios)</string>
+    <string name="fecha">Fecha (yyyy-mm-dd)</string>
+    <string name="Hora">Hora</string>
+    <string name="mascota">Nombre mascota</string>
+    <string name="vacunacion">Vacunación (Si/No)</string>
+    <string name="edad">Edad</string>
+    <string name="sexo">Sexo</string>
+    <string name="especie">Especie</string>
+    <string name="raza">Raza</string>
+    <string name="color">Color</string>
+    <string name="motivo_citas">Motivo de la cita</string>
+    <string name="registrar">Registrar</string>
+
+    <!--End Formulario hacer cita-->
 </resources>
