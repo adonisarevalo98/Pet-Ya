@@ -93,7 +93,7 @@ public class HorariosAdapter extends ArrayAdapter<Horarios> {
 
         @Override
         public CharSequence convertResultToString(Object resultValue){
-            return ((Horarios) resultValue).getHora_inicio() + " - " + ((Horarios) resultValue).getHora_fin();
+            return ((Horarios) resultValue).getHora_inicio() + " a " + ((Horarios) resultValue).getHora_fin();
         }
 
     };
