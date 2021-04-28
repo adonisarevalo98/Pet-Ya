@@ -11,6 +11,9 @@
     <!--end perfil veterinario-->
     <!--perfil secretaria-->
     <string name="nombre_secretaria">Sec. María Escobar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+
     <!--end perfil secretaria-->
     <!--perfil cliente-->
     <string name="solicitar_cita">Solicitar cita</string>

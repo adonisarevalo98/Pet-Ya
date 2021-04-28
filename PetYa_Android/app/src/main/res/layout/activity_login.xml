@@ -106,6 +106,7 @@
             android:background="@color/red"
             android:text="@string/google"
             android:textColor="@color/white"
+            app:backgroundTint="@color/red"
             app:icon="@drawable/google_plus" />
 
 

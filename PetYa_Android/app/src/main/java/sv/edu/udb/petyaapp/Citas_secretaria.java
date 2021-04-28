@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,26 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import sv.edu.udb.petyaapp.adapters.CitasSecretariaAdapter;
+import sv.edu.udb.petyaapp.config.Config;
+import sv.edu.udb.petyaapp.interfaces.Citas_secretariaService;
+import sv.edu.udb.petyaapp.models.CitasSecretaria;
+
 public class Citas_secretaria extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    ListView listView;
+    ArrayList<CitasSecretaria>citaLists;
+    Citas_secretariaService citaApi;
+    CitasSecretariaAdapter adapter;
 
     //Variable para gestionar FirebaseAuth
     private FirebaseAuth mAuth;
@@ -82,6 +98,30 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
 
         navigationView.setCheckedItem(R.id.citasecretaria);  //item seleccionado por defecto
         /*******End Menu********/
+
+        /*******Lista********/
+        listView=(ListView)findViewById(R.id.list_view);
+        getData();
+        /*******End Lista********/
+
+    }
+
+    private void getData() {
+        citaApi= Config.getRetrofit().create(Citas_secretariaService.class);
+        Call<ArrayList<CitasSecretaria>> call=citaApi.getCitas();
+        call.enqueue(new Callback<ArrayList<CitasSecretaria>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CitasSecretaria>> call, Response<ArrayList<CitasSecretaria>> response) {
+                citaLists=response.body();
+                adapter=new CitasSecretariaAdapter(getApplicationContext(),R.layout.listcitas,citaLists);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CitasSecretaria>> call, Throwable t) {
+
+            }
+        });
     }
 
     /*******Menu********/
