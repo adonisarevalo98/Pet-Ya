@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +47,7 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
 
     ListView listView;
     ArrayList<CitasSecretaria>citaLists;
+    ArrayList<CitasSecretaria>citaSecretariaLists;
     Citas_secretariaService citaApi;
     CitasSecretariaAdapter adapter;
 
@@ -113,6 +116,21 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
             @Override
             public void onResponse(Call<ArrayList<CitasSecretaria>> call, Response<ArrayList<CitasSecretaria>> response) {
                 citaLists=response.body();
+
+                boolean flag = false;
+                do{
+                    for(int i=0;i<citaLists.size();i++){
+                        //System.out.println(arr[i].estado);
+                        if(!citaLists.get(i).getEstado().equals("solicitado")){
+                            flag = true;
+                            citaLists.remove(i);
+                        }else{
+                            flag=false;
+                        }
+                    }
+                }while(flag == true);
+
+                System.out.println(citaLists.size());
                 adapter=new CitasSecretariaAdapter(getApplicationContext(),R.layout.listcitas,citaLists);
                 listView.setAdapter(adapter);
             }

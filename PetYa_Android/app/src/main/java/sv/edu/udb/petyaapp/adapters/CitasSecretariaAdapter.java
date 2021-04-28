@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import java.util.ArrayList;
 
 import sv.edu.udb.petyaapp.R;
@@ -19,6 +21,7 @@ public class CitasSecretariaAdapter extends ArrayAdapter<CitasSecretaria> {
     int resource;
     public CitasSecretariaAdapter(Context context, int resource, ArrayList<CitasSecretaria> citaList) {
         super(context, resource, citaList);
+
         this.citaList =citaList;
         this.context=context;
         this.resource=resource;
