@@ -1,9 +1,9 @@
 package sv.edu.udb.petyaapp.models;
 
 public class Empleados {
-
-    private String nombre;
-    private String apellido;
+    private int id;
+    private String nombres;
+    private String apellidos;
     private String correo;
     private String foto;
     private String telefono;
@@ -11,16 +11,18 @@ public class Empleados {
     private String categoria;
 
     public Empleados(
-             String nombre,
-             String apellido,
-            String correo,
+             int id,
+             String nombres,
+             String apellidos,
+             String correo,
              String foto,
              String telefono,
-            String contraseña,
+             String contraseña,
              String categoria){
 
-        this.nombre=nombre;
-        this.apellido=apellido;
+        this.id = id;
+        this.nombres=nombres;
+        this.apellidos=apellidos;
         this.correo=correo;
         this.foto=foto;
         this.telefono=telefono;
@@ -28,13 +30,14 @@ public class Empleados {
         this.categoria=categoria;
     }
 
+    public int getId(){ return id; }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
     public String getCorreo() {

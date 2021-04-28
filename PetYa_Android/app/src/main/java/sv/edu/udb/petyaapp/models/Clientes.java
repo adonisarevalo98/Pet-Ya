@@ -2,6 +2,7 @@ package sv.edu.udb.petyaapp.models;
 
 public class Clientes {
 
+    private int id;
     private String nombre;
     private String correo;
     private String foto;
@@ -10,12 +11,14 @@ public class Clientes {
     private String categoria;
 
     public Clientes(
+
                       String nombre,
                       String correo,
                       String foto,
                       String telefono,
                       String contraseña,
                       String categoria){
+
 
         this.nombre=nombre;
         this.correo=correo;
@@ -25,6 +28,8 @@ public class Clientes {
         this.categoria=categoria;
     }
 
+
+    public int getId(){ return id; }
 
     public String getNombre() {
         return nombre;

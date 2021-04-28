@@ -51,14 +51,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/veterinarios"
-                    android:textColorHint="@color/gray">
+                    >
 
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_veterinario"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idEmpleadoLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/idEmpleado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idClienteLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/idCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fecha"
@@ -72,7 +111,7 @@
                         android:id="@+id/fecha_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white">
+                        >
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -88,6 +127,8 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_hora_cita"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -105,7 +146,7 @@
                         android:id="@+id/nombre_mascota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white">
+                        >
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -117,14 +158,16 @@
 
                     android:layout_height="wrap_content"
                     android:hint="@string/edad"
-                    android:textColorHint="@color/gray">
+                    android:textColorHint="@color/gray"
+
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:textColor="@color/white">
+                        >
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -140,6 +183,8 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_sexo_mascota"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -155,8 +200,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/especie"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white">
+                        android:layout_height="wrap_content">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -172,8 +216,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/raza"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white">
+                        android:layout_height="wrap_content">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
@@ -191,7 +234,6 @@
                         android:id="@+id/motivo_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
                         android:inputType="textMultiLine"
                         android:lines="4">
 

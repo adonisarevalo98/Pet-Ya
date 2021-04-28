@@ -115,6 +115,8 @@ public class Registro extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"Error:"+response.code(),Toast.LENGTH_LONG).show();
 
                 }
+
+
             }
 
             @Override

@@ -61,7 +61,7 @@ class FormularioCitaController extends Controller
     public function show($id)
     {
         $formCita = FormularioCita::find($id);
-        return json_encode($formCita);
+        return json_encode($formCita); 
     }
 
     public function update(Request $request, $id)
