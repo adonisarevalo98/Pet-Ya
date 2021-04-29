@@ -45,95 +45,72 @@ public class FormCitas {
         this.cliente_id = cliente_id;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
-    public String getFecha_cita() {
-        return fecha_cita;
-    }
 
-    public void setFecha_cita(String fecha_cita) {
-        this.fecha_cita = fecha_cita;
-    }
+    public String getFecha_cita() { return fecha_cita; }
 
-    public String getHora() {
-        return hora;
-    }
+    public void setFecha_cita(String fecha_cita) { this.fecha_cita = fecha_cita; }
 
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
 
-    public String getNombre_mascota() {
-        return nombre_mascota;
-    }
 
-    public void setNombre_mascota(String nombre_mascota) {
-        this.nombre_mascota = nombre_mascota;
-    }
+    public String getHora() { return hora; }
 
-    public String getEspecie() {
-        return especie;
-    }
+    public void setHora(String hora) { this.hora = hora; }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
 
-    public String getRaza() {
-        return raza;
-    }
 
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
+    public String getNombre_mascota() { return nombre_mascota; }
 
-    public String getEdad() {
-        return edad;
-    }
+    public void setNombre_mascota(String nombre_mascota) { this.nombre_mascota = nombre_mascota; }
 
-    public void setEdad(String edad) {
-        this.edad = edad;
-    }
 
-    public String getSexo() {
-        return sexo;
-    }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+    public String getEspecie() { return especie; }
 
-    public String getMotivo() {
-        return motivo;
-    }
+    public void setEspecie(String especie) { this.especie = especie; }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+    public String getRaza() { return raza; }
 
-    public int getId_empleado() {
-        return id_empleado;
-    }
+    public void setRaza(String raza) { this.raza = raza; }
 
-    public void setId_empleado(int id_empleado) {
-        this.id_empleado = id_empleado;
-    }
 
-    public int getCliente_id() {
-        return cliente_id;
-    }
 
-    public void setCliente_id(int cliente_id) {
-        this.cliente_id = cliente_id;
-    }
+    public String getEdad() { return edad; }
+
+    public void setEdad(String edad) { this.edad = edad; }
+
+
+
+    public String getSexo() { return sexo; }
+
+    public void setSexo(String sexo) { this.sexo = sexo; }
+
+
+
+    public String getMotivo() { return motivo; }
+
+    public void setMotivo(String motivo) { this.motivo = motivo; }
+
+
+
+    public String getEstado() { return estado; }
+
+    public void setEstado(String estado) { this.estado = estado; }
+
+
+
+    public int getId_empleado() { return id_empleado; }
+
+    public void setId_empleado(int id_empleado) { this.id_empleado = id_empleado; }
+
+
+
+    public int getCliente_id() { return cliente_id; }
+
+    public void setCliente_id(int cliente_id) { this.cliente_id = cliente_id; }
+
+
 }
