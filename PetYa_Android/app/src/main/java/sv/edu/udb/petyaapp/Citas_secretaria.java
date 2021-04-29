@@ -79,7 +79,7 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
         txtemail.setText(currentUser.getEmail());
         // cargar imágen con glide:
         ImageView imagenUser =(ImageView)  header.findViewById(R.id.imagenUser);
-        if(currentUser.getPhotoUrl()!=null){
+            if(currentUser.getPhotoUrl()!=null){
             Glide.with(this).load(currentUser.getPhotoUrl()).into(imagenUser);
         }
 
@@ -124,13 +124,14 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
                         if(!citaLists.get(i).getEstado().equals("solicitado")){
                             flag = true;
                             citaLists.remove(i);
+                            //citaLists.remove(citaLists.get(i)); --> alternativa
                         }else{
                             flag=false;
                         }
                     }
                 }while(flag == true);
 
-                System.out.println(citaLists.size());
+
                 adapter=new CitasSecretariaAdapter(getApplicationContext(),R.layout.listcitas,citaLists);
                 listView.setAdapter(adapter);
             }
