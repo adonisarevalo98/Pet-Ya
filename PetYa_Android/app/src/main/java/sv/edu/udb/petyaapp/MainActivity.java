@@ -115,24 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onResponse(Call<ArrayList<CitasVeterinario>> call, Response<ArrayList<CitasVeterinario>> response) {
                 citaLists=response.body();
-                boolean flag = false;
-                boolean flag2 = false;
-                do{
-                do{
-                    for(int i=0;i<citaLists.size();i++){
-                        //System.out.println(arr[i].estado);
-                        if(!citaLists.get(i).getEstado().equals("proceso")){
-                            flag = true;
-                            flag2 = true;
-                            citaLists.remove(i);
-                            //citaLists.remove(citaLists.get(i)); --> alternativa
-                        }else{
-                            flag=false;
-                            flag2=false;
-                        }
-                    }
-                }while(flag == true);
-                }while (flag2== true);
+
                 adapter=new CitasVetAdapter(getApplicationContext(),R.layout.listcitas,citaLists);
                 listView.setAdapter(adapter);
             }

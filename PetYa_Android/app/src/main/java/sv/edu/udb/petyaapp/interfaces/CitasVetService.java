@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import sv.edu.udb.petyaapp.models.CitasVeterinario;
 
 public interface CitasVetService {
-    @GET("petya-formcita")
+    @GET("petya-formcita/proceso")
     Call<ArrayList<CitasVeterinario>> getcitasvet();
 }

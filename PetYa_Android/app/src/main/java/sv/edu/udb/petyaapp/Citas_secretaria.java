@@ -117,19 +117,6 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
             public void onResponse(Call<ArrayList<CitasSecretaria>> call, Response<ArrayList<CitasSecretaria>> response) {
                 citaLists=response.body();
 
-                boolean flag = false;
-                do{
-                    for(int i=0;i<citaLists.size();i++){
-                        //System.out.println(arr[i].estado);
-                        if(!citaLists.get(i).getEstado().equals("solicitado")){
-                            flag = true;
-                            citaLists.remove(i);
-                            //citaLists.remove(citaLists.get(i)); --> alternativa
-                        }else{
-                            flag=false;
-                        }
-                    }
-                }while(flag == true);
 
 
                 adapter=new CitasSecretariaAdapter(getApplicationContext(),R.layout.listcitas,citaLists);

@@ -8,7 +8,7 @@ import sv.edu.udb.petyaapp.models.CitasSecretaria;
 
 
 public interface Citas_secretariaService {
-    @GET("petya-formcita")
+    @GET("petya-formcita/solicitado")
     Call<ArrayList<CitasSecretaria>> getCitas();
 
 }

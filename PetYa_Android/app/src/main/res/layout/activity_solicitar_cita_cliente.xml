@@ -56,7 +56,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_veterinario"
                         android:enabled="false"
-                        android:textColor="@color/black"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -128,7 +128,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_hora_cita"
                         android:enabled="false"
-                        android:textColor="@color/black"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -182,7 +182,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/dropdown_sexo_mascota"
                         android:enabled="false"
-                        android:textColor="@color/black"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
