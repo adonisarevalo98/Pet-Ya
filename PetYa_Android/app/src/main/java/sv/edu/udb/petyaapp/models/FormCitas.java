@@ -45,7 +45,6 @@ public class FormCitas {
         this.cliente_id = cliente_id;
     }
 
-
     public int getId() {
         return id;
     }
@@ -54,63 +53,87 @@ public class FormCitas {
         return fecha_cita;
     }
 
+    public void setFecha_cita(String fecha_cita) {
+        this.fecha_cita = fecha_cita;
+    }
+
     public String getHora() {
         return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getNombre_mascota() {
         return nombre_mascota;
     }
 
+    public void setNombre_mascota(String nombre_mascota) {
+        this.nombre_mascota = nombre_mascota;
+    }
+
     public String getEspecie() {
         return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
     }
 
     public String getRaza() {
         return raza;
     }
 
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
     public String getEdad() {
         return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public String getSexo() {
         return sexo;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public String getVacunacion() {
-        return vacunacion;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getMotivo() {
         return motivo;
     }
 
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
     public String getEstado() {
         return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getId_empleado() {
         return id_empleado;
     }
 
-    public String getPeso() {
-        return peso;
-    }
-
-    public String getPulso() {
-        return pulso;
-    }
-
-    public String getTemperatura() {
-        return temperatura;
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
     }
 
     public int getCliente_id() {
         return cliente_id;
+    }
+
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
     }
 }

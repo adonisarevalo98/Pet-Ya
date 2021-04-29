@@ -51,7 +51,6 @@ import sv.edu.udb.petyaapp.models.Clientes;
 import sv.edu.udb.petyaapp.models.Empleados;
 import sv.edu.udb.petyaapp.models.FormCitas;
 import sv.edu.udb.petyaapp.models.Horarios;
-import sv.edu.udb.petyaapp.models.RespFormCita;
 
 public class Solicitar_cita_cliente extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Variables
@@ -288,8 +287,9 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
 
     /*****BTN AÑADIR******/
     private void añadirCita() {
-        String fecha_cita, hora_cita, nombre_mascota, edad, sexo, especie, raza, motivo, estado;
+        String empleado, fecha_cita, hora_cita, nombre_mascota, edad, sexo, especie, raza, motivo, estado;
         int idEmpleado, clienteId;
+        empleado = autoCompleteTextViewEmpleados.getText().toString();
         fecha_cita = txtEDTFecha.getText().toString();
         hora_cita = autoCompleteTextViewHorarios.getText().toString();
         nombre_mascota = txtEDTNombre.getText().toString();
@@ -299,31 +299,60 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
         raza = txtEDTRaza.getText().toString();
         motivo = txtEDTMotivo.getText().toString();
         estado = "solicitado";
-        idEmpleado = Integer.parseInt(textInputEditTextEmpleado.getText().toString());
-        clienteId = Integer.parseInt(textInputEditTextCliente.getText().toString());
 
-
-        if(TextUtils.isEmpty(fecha_cita) || TextUtils.isEmpty(hora_cita) || TextUtils.isEmpty(nombre_mascota) || TextUtils.isEmpty(edad) || TextUtils.isEmpty(sexo)
-        || TextUtils.isEmpty(especie) || TextUtils.isEmpty(raza) || idEmpleado == 0){
-            Toast.makeText(getBaseContext(),"Falta campos por rellenar, no es requerido el campo Motivo" ,Toast.LENGTH_LONG).show();
+        if(TextUtils.isEmpty(empleado)){
+            Toast.makeText(getBaseContext(),"Falta por seleccionar a un empleado" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(fecha_cita)){
+            Toast.makeText(getBaseContext(),"Falta por ingresar una fecha" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(hora_cita)){
+            Toast.makeText(getBaseContext(),"Falta por seleccionar un intervalo de hora" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(nombre_mascota)){
+            Toast.makeText(getBaseContext(),"Falta por ingresar el nombre de la mascota" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(edad)){
+            Toast.makeText(getBaseContext(),"Falta por ingresar una edad" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(sexo)){
+            Toast.makeText(getBaseContext(),"Falta por seleccionar el sexo de su mascota" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(especie)){
+            Toast.makeText(getBaseContext(),"Falta por ingresar la especie de su mascota" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(raza)){
+            Toast.makeText(getBaseContext(),"Falta por ingresar la raza de su mascota" ,Toast.LENGTH_LONG).show();
             return;
         }
 
+        idEmpleado = Integer.parseInt(textInputEditTextEmpleado.getText().toString());
+        clienteId = Integer.parseInt(textInputEditTextCliente.getText().toString());
+
         FormCitas formCitas = new FormCitas(fecha_cita, hora_cita, nombre_mascota, especie, raza, edad, sexo,  motivo, estado, idEmpleado, clienteId);
 
-        Call<RespFormCita> call = formCitaService.insertarCitas(formCitas);
-        call.enqueue(new Callback<RespFormCita>() {
+        Call<FormCitas> call = formCitaService.insertarCitas(formCitas);
+
+        call.enqueue(new Callback<FormCitas>() {
             @Override
-            public void onResponse(Call<RespFormCita> call, Response<RespFormCita> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(getBaseContext(),"Error:"+response.code(),Toast.LENGTH_LONG).show();
+            public void onResponse(Call<FormCitas> call, Response<FormCitas> response) {
+                if(response.code() == 200){
+                    Toast.makeText(getBaseContext(), "Cita añadida satisfactoriamente", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getBaseContext(), "Error: " + response.code(), Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(getBaseContext(),"Agregado a la base de datos" ,Toast.LENGTH_LONG).show();
 
             }
 
             @Override
-            public void onFailure(Call<RespFormCita> call, Throwable t) {
+            public void onFailure(Call<FormCitas> call, Throwable t) {
                 Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
