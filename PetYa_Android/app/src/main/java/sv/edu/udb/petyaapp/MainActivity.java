@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +38,9 @@ import retrofit2.Response;
 import sv.edu.udb.petyaapp.adapters.CitasVetAdapter;
 import sv.edu.udb.petyaapp.config.Config;
 import sv.edu.udb.petyaapp.interfaces.CitasVetService;
+import sv.edu.udb.petyaapp.interfaces.EmpleadoService;
 import sv.edu.udb.petyaapp.models.CitasVeterinario;
+import sv.edu.udb.petyaapp.models.Empleados;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CitasVetService citaApi;
     CitasVetAdapter adapter;
 
+    int id_veterinario = 0;
+
     //Variable para gestionar FirebaseAuth
     private FirebaseAuth mAuth;
+
+    private EmpleadoService empleadoservicio = Config.getRetrofit().create(EmpleadoService.class);
     //Variables opcionales para desloguear de google tambien
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
@@ -100,17 +108,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.cita);  //item seleccionado por defecto
+
+
         /*******End Menu********/
+        getidlogueado();
 
         /*******Lista********/
         listView=(ListView)findViewById(R.id.list_view_vet);
-        getData();
+        //getData();
         /*******End Lista********/
+
     }
 
-    private void getData() {
+    private void getidlogueado() {
+        Call<List<Empleados>> call = empleadoservicio.getEmpleados();
+        call.enqueue(new Callback<List<Empleados>>() {
+            @Override
+            public void onResponse(Call<List<Empleados>> call, Response<List<Empleados>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getBaseContext(),"Error:"+response.code(),Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //almacenamos en "emps" el contenido de la consulta en formato gson
+                //actualmente "emps" guardará a todos los empleados de la API
+                List<Empleados> emps = response.body();
+                //recorremos "emps" para validar si el usuario logeado es empleado o no
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                for(Empleados empleado:emps){
+                    //si existe en la tabla empleados almacenamos su categoria
+                    if(empleado.getCorreo().equals(currentUser.getEmail()) ){
+                        id_veterinario=empleado.getId();
+                    }
+                }
+                getData(id_veterinario);
+                System.out.println(id_veterinario);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Empleados>> call, Throwable t) {
+                Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
+    private void getData(int id) {
         citaApi= Config.getRetrofit().create(CitasVetService.class);
-        Call<ArrayList<CitasVeterinario>> call=citaApi.getcitasvet();
+        Call<ArrayList<CitasVeterinario>> call=citaApi.getcitasvet(String.valueOf(id));
         call.enqueue(new Callback<ArrayList<CitasVeterinario>>() {
             @Override
             public void onResponse(Call<ArrayList<CitasVeterinario>> call, Response<ArrayList<CitasVeterinario>> response) {
