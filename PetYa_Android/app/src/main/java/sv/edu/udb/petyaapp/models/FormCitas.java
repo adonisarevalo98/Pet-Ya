@@ -18,6 +18,7 @@ public class FormCitas {
     private String pulso;
     private String temperatura;
     private int cliente_id;
+    private String cliente_uid;
 
     public FormCitas(
             String fecha_cita,
@@ -30,7 +31,8 @@ public class FormCitas {
             String motivo,
             String estado,
             int id_empleado,
-            int cliente_id){
+            int cliente_id,
+            String cliente_uid){
 
         this.fecha_cita = fecha_cita;
         this.hora = hora;
@@ -43,6 +45,7 @@ public class FormCitas {
         this.estado = estado;
         this.id_empleado = id_empleado;
         this.cliente_id = cliente_id;
+        this.cliente_uid = cliente_uid;
     }
 
     public int getId() { return id; }
@@ -113,4 +116,7 @@ public class FormCitas {
     public void setCliente_id(int cliente_id) { this.cliente_id = cliente_id; }
 
 
+    public String getCliente_uid() { return cliente_uid; }
+
+    public void setCliente_uid(String cliente_uid) { this.cliente_uid = cliente_uid; }
 }

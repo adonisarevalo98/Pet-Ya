@@ -60,7 +60,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
     ScrollView scrollView;
     //Variables de los campos del formulario
     AutoCompleteTextView autoCompleteTextViewEmpleados, autoCompleteTextViewHorarios, autoCompleteTextViewSexo;
-    TextInputEditText textInputEditTextEmpleado, textInputEditTextCliente, txtEDTFecha, txtEDTNombre, txtEDTEdad, txtEDTEspecie, txtEDTRaza, txtEDTMotivo;
+    TextInputEditText textInputEditTextEmpleado, textInputEditTextCliente, textInputEditTextUID, txtEDTFecha, txtEDTNombre, txtEDTEdad, txtEDTEspecie, txtEDTRaza, txtEDTMotivo;
     Button btnRegistro;
     String[] sexo = {"Macho", "Hembra"};
     //Variables para el retrofit de Empleados
@@ -101,6 +101,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             autoCompleteTextViewEmpleados = findViewById(R.id.dropdown_veterinario);
             textInputEditTextEmpleado = findViewById(R.id.idEmpleado);
             textInputEditTextCliente = findViewById(R.id.idCliente);
+            textInputEditTextUID = findViewById(R.id.uId);
             txtEDTFecha = findViewById(R.id.fecha_cita);
             autoCompleteTextViewHorarios = findViewById(R.id.dropdown_hora_cita);
             txtEDTNombre = findViewById(R.id.nombre_mascota);
@@ -115,7 +116,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             /******Llenando el combobox/autocompletetextview con la lista de los empleados******/
             listaEmpleados();
             /******Capturando el correo del usuario en sesion para obtener su id******/
-            idCliente(currentUser.getEmail());
+            idCliente(currentUser);
 
 
 
@@ -246,6 +247,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
                         horariosList.add(horario);
                     }
                 }
+
             }
 
             @Override
@@ -259,7 +261,9 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
     }
 
     /***METODO PARA OBTENER EL ID DEL CLIENTE*****/
-    private void idCliente(String correo) {
+    private void idCliente(FirebaseUser currentUser) {
+        String correo = currentUser.getEmail();
+
         Call<List<Clientes>> call = clienteService.getClientes();
         call.enqueue(new Callback<List<Clientes>>() {
             @Override
@@ -272,10 +276,16 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
                 for(Clientes cli: hors){
                     if(cli.getCorreo().equals(correo)){
                         String id = String.valueOf(cli.getId());
-                        textInputEditTextCliente.setText(id);
-                        //Toast.makeText(getBaseContext(), "ID: " + textInputEditTextCliente.getText().toString(), Toast.LENGTH_LONG).show();
+
+
+                        if(!id.equals("") || !id.equals("1")) {
+                            textInputEditTextCliente.setText(id);
+                        }
+
                     }
                 }
+                textInputEditTextUID.setText(currentUser.getUid());
+
             }
 
             @Override
@@ -287,7 +297,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
 
     /*****BTN AÑADIR******/
     private void añadirCita() {
-        String empleado, fecha_cita, hora_cita, nombre_mascota, edad, sexo, especie, raza, motivo, estado;
+        String empleado, fecha_cita, hora_cita, nombre_mascota, edad, sexo, especie, raza, motivo, estado, uid;
         int idEmpleado, clienteId;
         empleado = autoCompleteTextViewEmpleados.getText().toString();
         fecha_cita = txtEDTFecha.getText().toString();
@@ -299,6 +309,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
         raza = txtEDTRaza.getText().toString();
         motivo = txtEDTMotivo.getText().toString();
         estado = "solicitado";
+        uid = textInputEditTextUID.getText().toString();
 
         if(TextUtils.isEmpty(empleado)){
             Toast.makeText(getBaseContext(),"Falta por seleccionar a un empleado" ,Toast.LENGTH_LONG).show();
@@ -336,7 +347,9 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
         idEmpleado = Integer.parseInt(textInputEditTextEmpleado.getText().toString());
         clienteId = Integer.parseInt(textInputEditTextCliente.getText().toString());
 
-        FormCitas formCitas = new FormCitas(fecha_cita, hora_cita, nombre_mascota, especie, raza, edad, sexo,  motivo, estado, idEmpleado, clienteId);
+
+
+        FormCitas formCitas = new FormCitas(fecha_cita, hora_cita, nombre_mascota, especie, raza, edad, sexo,  motivo, estado, idEmpleado, clienteId, uid);
 
         Call<FormCitas> call = formCitaService.insertarCitas(formCitas);
 
@@ -345,6 +358,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             public void onResponse(Call<FormCitas> call, Response<FormCitas> response) {
                 if(response.code() == 200){
                     Toast.makeText(getBaseContext(), "Cita añadida satisfactoriamente", Toast.LENGTH_LONG).show();
+                    limpiarCampos();
                 }else{
                     Toast.makeText(getBaseContext(), "Error: " + response.code(), Toast.LENGTH_LONG).show();
                 }
@@ -356,6 +370,18 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
                 Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void limpiarCampos(){
+        autoCompleteTextViewEmpleados.setText("");
+        txtEDTFecha.setText("");
+        autoCompleteTextViewHorarios.setText("");
+        txtEDTNombre.setText("");
+        txtEDTEdad.setText("");
+        autoCompleteTextViewSexo.setText("");
+        txtEDTEspecie.setText("");
+        txtEDTRaza.setText("");
+        txtEDTMotivo.setText("");
     }
 
 
