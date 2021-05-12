@@ -3,12 +3,12 @@ package sv.edu.udb.petyaapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,31 +34,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import sv.edu.udb.petyaapp.adapters.CitasVetAdapter;
+import sv.edu.udb.petyaapp.adapters.DiagnosticosAdapter;
 import sv.edu.udb.petyaapp.config.Config;
 import sv.edu.udb.petyaapp.interfaces.CitasVetService;
-import sv.edu.udb.petyaapp.interfaces.EmpleadoService;
+import sv.edu.udb.petyaapp.interfaces.ClienteService;
+import sv.edu.udb.petyaapp.interfaces.DiagnosticosClienteService;
+import sv.edu.udb.petyaapp.interfaces.DiagnosticosVetService;
 import sv.edu.udb.petyaapp.models.CitasVeterinario;
+import sv.edu.udb.petyaapp.models.Clientes;
+import sv.edu.udb.petyaapp.models.Diagnosticos;
 import sv.edu.udb.petyaapp.models.Empleados;
 
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DiagnosticosCliente extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
 
-
     ListView listView;
-    ArrayList<CitasVeterinario> citaLists;
-    CitasVetService citaApi;
-    CitasVetAdapter adapter;
+    ArrayList<Diagnosticos> diagnosticoLists;
+    DiagnosticosClienteService diagnosticoApi;
+    DiagnosticosAdapter adapter;
 
-    int id_veterinario = 0;
+    int id_cli = 0;
 
-    //Variable para gestionar FirebaseAuth
+    //Variables para el retrofit de Clientes
+    private ClienteService clienteService = Config.getRetrofit().create(ClienteService.class);
     private FirebaseAuth mAuth;
-
-    private EmpleadoService empleadoservicio = Config.getRetrofit().create(EmpleadoService.class);
     //Variables opcionales para desloguear de google tambien
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
@@ -68,20 +68,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-// Inicializar Firebase Auth
+        setContentView(R.layout.activity_diagnosticos);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-//Configurar las gso para google signIn con el fin de luego desloguear de google
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        //Configurar las gso para google signIn con el fin de luego desloguear de google
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         /*******Menu********/
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-
         //Colocando correo e imagen en el header del perfil:
         View header = navigationView.getHeaderView(0);
         TextView txtemail = (TextView) header.findViewById(R.id.txtCorreo);
@@ -92,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (currentUser.getPhotoUrl() != null) {
             Glide.with(this).load(currentUser.getPhotoUrl()).into(imagenUser);
         }
+
+
         //toolbar
         setSupportActionBar(toolbar);
 
@@ -108,48 +107,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.cita);  //item seleccionado por defecto
-
-
+        navigationView.setCheckedItem(R.id.historial);  //item seleccionado por defecto
         /*******End Menu********/
         getidlogueado();
-
         /*******Lista********/
-        listView = (ListView) findViewById(R.id.list_view_vet);
-        //getData();
-        /*******End Lista********/
+        listView = (ListView) findViewById(R.id.list_view_diagnostico_cliente);
 
+        /*******End Lista********/
     }
 
+
     private void getidlogueado() {
-        Call<List<Empleados>> call = empleadoservicio.getEmpleados();
-        call.enqueue(new Callback<List<Empleados>>() {
+        Call<List<Clientes>> call = clienteService.getClientes();
+        call.enqueue(new Callback<List<Clientes>>() {
             @Override
-            public void onResponse(Call<List<Empleados>> call, Response<List<Empleados>> response) {
+            public void onResponse(Call<List<Clientes>> call, Response<List<Clientes>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getBaseContext(), "Error:" + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
                 //almacenamos en "emps" el contenido de la consulta en formato gson
                 //actualmente "emps" guardará a todos los empleados de la API
-                List<Empleados> emps = response.body();
+                List<Clientes> emps = response.body();
                 //recorremos "emps" para validar si el usuario logeado es empleado o no
                 mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
-                for (Empleados empleado : emps) {
+                for (Clientes empleado : emps) {
                     //si existe en la tabla empleados almacenamos su categoria
                     if (empleado.getCorreo().equals(currentUser.getEmail())) {
-                        id_veterinario = empleado.getId();
+                        id_cli = empleado.getId();
                     }
                 }
-                getData(id_veterinario);
-                System.out.println(id_veterinario);
+                getData(id_cli);
+                System.out.println(id_cli);
 
 
             }
 
             @Override
-            public void onFailure(Call<List<Empleados>> call, Throwable t) {
+            public void onFailure(Call<List<Clientes>> call, Throwable t) {
                 Toast.makeText(getBaseContext(), "Error:" + t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
@@ -158,19 +154,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getData(int id) {
-        citaApi = Config.getRetrofit().create(CitasVetService.class);
-        Call<ArrayList<CitasVeterinario>> call = citaApi.getcitasvet(String.valueOf(id));
-        call.enqueue(new Callback<ArrayList<CitasVeterinario>>() {
+        diagnosticoApi = Config.getRetrofit().create(DiagnosticosClienteService.class);
+        Call<ArrayList<Diagnosticos>> call = diagnosticoApi.getdiagnosticoscliente(String.valueOf(id));
+        call.enqueue(new Callback<ArrayList<Diagnosticos>>() {
             @Override
-            public void onResponse(Call<ArrayList<CitasVeterinario>> call, Response<ArrayList<CitasVeterinario>> response) {
-                citaLists = response.body();
+            public void onResponse(Call<ArrayList<Diagnosticos>> call, Response<ArrayList<Diagnosticos>> response) {
+                diagnosticoLists = response.body();
 
-                adapter = new CitasVetAdapter(getApplicationContext(), R.layout.listcitas, citaLists);
+                adapter = new DiagnosticosAdapter(getApplicationContext(), R.layout.listcitas, diagnosticoLists);
                 listView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<ArrayList<CitasVeterinario>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Diagnosticos>> call, Throwable t) {
 
             }
         });
@@ -192,18 +188,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.cita:
-                break;
-            case R.id.horario:
-                Intent intent = new Intent(MainActivity.this, Vet_mis_horarios.class);
-                startActivity(intent);
-                break;
-            case R.id.diagnosticos:
-                Intent intent1 = new Intent(MainActivity.this, DiagnosticosVet.class);
-                startActivity(intent1);
-                break;
             case R.id.logoutBTN:
                 cerrarSesion();
+                break;
+            case R.id.solicitar_cita:
+                Intent intent = new Intent(DiagnosticosCliente.this, Solicitar_cita_cliente.class);
+                startActivity(intent);
+
+                break;
+            case R.id.historial:
+                break;
+            case R.id.editcuenta:
+                //Intent intent2 = new Intent(DiagnosticosCliente.this, Detalles_Diagnostico.class);
+               // startActivity(intent2);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -211,6 +208,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /*******End Menu********/
+
+
     //metodo para cerrar sesion con email y google tras hacer click en el boton
     public void cerrarSesion() {
         FirebaseAuth.getInstance().signOut();
@@ -221,10 +220,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onComplete(@NonNull Task<Void> task) {
                 //Abrir MainActivity con SigIn button
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(MainActivity.this, Login.class);
+                    Intent intent = new Intent(DiagnosticosCliente.this, Login.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Hasta Luego!", Toast.LENGTH_LONG).show();
-                    MainActivity.this.finish();
+                    DiagnosticosCliente.this.finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "No se pudo cerrar sesión con google", Toast.LENGTH_LONG).show();
                 }
@@ -239,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (user == null) {
             //si es null el usuario no esta logueado
             // mover al usuario al login
-            Intent perfilusuario = new Intent(MainActivity.this, Login.class);
+            Intent perfilusuario = new Intent(DiagnosticosCliente.this, Login.class);
             startActivity(perfilusuario);
         }
         super.onStart();

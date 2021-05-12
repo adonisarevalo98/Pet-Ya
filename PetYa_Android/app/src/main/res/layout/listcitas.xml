@@ -35,7 +35,7 @@
             android:id="@+id/horadecita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="jojojojo"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:id="@+id/estadodecita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="jojojojo"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -53,40 +53,11 @@
             android:id="@+id/encargadomascota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="jojojojo"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/editBTN"
-            android:layout_width="129dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/primario"
-            android:drawableLeft="@drawable/ic_edit"
-            android:drawablePadding="8dp"
-            android:paddingLeft="8dp"
-            android:text="@string/edit"
-            android:textColor="@color/white"
-            android:textSize="13dp"
-            app:backgroundTint="@color/primario" />
-
-        <Button
-            android:id="@+id/elimBTN"
-            android:layout_width="129dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/red"
-            android:drawableLeft="@drawable/ic_delete_20"
-            android:drawablePadding="8dp"
-            android:paddingLeft="8dp"
-            android:text="@string/delete"
-            android:textColor="@color/white"
-            android:textSize="13dp"
-            app:backgroundTint="@color/red" />
 
     </LinearLayout>
 

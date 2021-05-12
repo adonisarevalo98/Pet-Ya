@@ -8,7 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,11 +36,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import sv.edu.udb.petyaapp.adapters.CitasVetAdapter;
+import sv.edu.udb.petyaapp.adapters.DiagnosticosAdapter;
+import sv.edu.udb.petyaapp.adapters.DiagnosticosVetAdapter;
 import sv.edu.udb.petyaapp.config.Config;
-import sv.edu.udb.petyaapp.interfaces.CitasVetService;
+
+import sv.edu.udb.petyaapp.interfaces.DiagnosticosVetService;
 import sv.edu.udb.petyaapp.interfaces.EmpleadoService;
 import sv.edu.udb.petyaapp.models.CitasVeterinario;
+import sv.edu.udb.petyaapp.models.Diagnosticos;
 import sv.edu.udb.petyaapp.models.Empleados;
+
 
 public class DiagnosticosVet extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Variables
@@ -50,9 +55,9 @@ public class DiagnosticosVet extends AppCompatActivity implements NavigationView
 
 
     ListView listView;
-    ArrayList<CitasVeterinario> citaLists;
-    CitasVetService citaApi;
-    CitasVetAdapter adapter;
+    ArrayList<Diagnosticos> diagnosticoLists;
+    DiagnosticosVetService diagnosticoApi;
+    DiagnosticosVetAdapter adapter;
 
     int id_veterinario = 0;
 
@@ -110,12 +115,66 @@ public class DiagnosticosVet extends AppCompatActivity implements NavigationView
 
 
         /*******End Menu********/
-        //getidlogueado();
+        getidlogueado();
 
         /*******Lista********/
         listView=(ListView)findViewById(R.id.list_view_diagnostico_vet);
         //getData();
         /*******End Lista********/
+
+    }
+    private void getidlogueado() {
+        Call<List<Empleados>> call = empleadoservicio.getEmpleados();
+        call.enqueue(new Callback<List<Empleados>>() {
+            @Override
+            public void onResponse(Call<List<Empleados>> call, Response<List<Empleados>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getBaseContext(), "Error:" + response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //almacenamos en "emps" el contenido de la consulta en formato gson
+                //actualmente "emps" guardará a todos los empleados de la API
+                List<Empleados> emps = response.body();
+                //recorremos "emps" para validar si el usuario logeado es empleado o no
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                for (Empleados empleado : emps) {
+                    //si existe en la tabla empleados almacenamos su categoria
+                    if (empleado.getCorreo().equals(currentUser.getEmail())) {
+                        id_veterinario = empleado.getId();
+                    }
+                }
+                getData(id_veterinario);
+                System.out.println(id_veterinario);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Empleados>> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Error:" + t.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+    private void getData(int id) {
+        diagnosticoApi = Config.getRetrofit().create(DiagnosticosVetService.class);
+        Call<ArrayList<Diagnosticos>> call = diagnosticoApi.getdiagnosticosvet(String.valueOf(id));
+        call.enqueue(new Callback<ArrayList<Diagnosticos>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Diagnosticos>> call, Response<ArrayList<Diagnosticos>> response) {
+                diagnosticoLists = response.body();
+
+                adapter = new DiagnosticosVetAdapter(getApplicationContext(), R.layout.listcitas, diagnosticoLists);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Diagnosticos>> call, Throwable t) {
+
+            }
+        });
 
     }
 

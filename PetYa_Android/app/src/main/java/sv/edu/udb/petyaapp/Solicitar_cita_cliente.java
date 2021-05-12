@@ -405,8 +405,12 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             case R.id.logoutBTN:
                 cerrarSesion();
                 break;
-            case R.id.cita:
+            case R.id.solicitar_cita:
 
+                break;
+            case R.id.historial:
+                Intent intent = new Intent(Solicitar_cita_cliente.this, DiagnosticosCliente.class);
+                startActivity(intent);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -19,6 +19,8 @@
     <string name="solicitar_cita">Solicitar cita</string>
     <string name="nombre_cliente">Roberto Martínez</string>
     <string name="historial_cliente_citas">Historial de citas</string>
+    <string name="diagn">Diagnostico</string>
+
     <!--end perfil cliente-->
     <!--Navigation-->
     <string name="navigation_drawer_open">Abrir drawer de navegacion</string>
