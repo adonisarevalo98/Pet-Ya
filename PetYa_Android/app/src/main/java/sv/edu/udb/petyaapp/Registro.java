@@ -107,10 +107,10 @@ public class Registro extends AppCompatActivity {
         });
         //Registro a base de datos
         Clientes clientes = new Clientes(nombre,email,"",telefono,"","");
-        Call<RespCliente> call = clienteservicio.insertClientes(clientes);
-        call.enqueue(new Callback<RespCliente>() {
+        Call<Clientes> call = clienteservicio.insertClientes(clientes);
+        call.enqueue(new Callback<Clientes>() {
             @Override
-            public void onResponse(Call<RespCliente> call, Response<RespCliente> response) {
+            public void onResponse(Call<Clientes> call, Response<Clientes> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getBaseContext(),"Error:"+response.code(),Toast.LENGTH_LONG).show();
 
@@ -120,7 +120,7 @@ public class Registro extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RespCliente> call, Throwable t) {
+            public void onFailure(Call<Clientes> call, Throwable t) {
                 Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
 
             }

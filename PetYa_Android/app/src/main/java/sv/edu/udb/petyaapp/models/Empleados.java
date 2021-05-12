@@ -5,9 +5,9 @@ public class Empleados {
     private String nombres;
     private String apellidos;
     private String correo;
-    private String foto;
+    private String foto_perfil;
     private String telefono;
-    private String contraseña;
+    private String password;
     private String categoria;
 
     public Empleados(
@@ -15,18 +15,18 @@ public class Empleados {
              String nombres,
              String apellidos,
              String correo,
-             String foto,
+             String foto_perfil,
              String telefono,
-             String contraseña,
+             String password,
              String categoria){
 
         this.id = id;
         this.nombres=nombres;
         this.apellidos=apellidos;
         this.correo=correo;
-        this.foto=foto;
+        this.foto_perfil=foto_perfil;
         this.telefono=telefono;
-        this.contraseña=contraseña;
+        this.password=password;
         this.categoria=categoria;
     }
 
@@ -45,7 +45,7 @@ public class Empleados {
     }
 
     public String getFoto() {
-        return foto;
+        return foto_perfil;
     }
 
     public String getTelefono() {
@@ -53,7 +53,7 @@ public class Empleados {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return password;
     }
 
     public String getCategoria() {

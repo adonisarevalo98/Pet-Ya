@@ -24,7 +24,7 @@ public interface ClienteService {
 
     //metodo post para insertar
     @POST("petya-clientes")
-    Call<RespCliente> insertClientes(
+    Call<Clientes> insertClientes(
             @Body Clientes clientes
 
             );

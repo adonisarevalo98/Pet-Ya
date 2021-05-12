@@ -198,9 +198,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this,Vet_mis_horarios.class);
                 startActivity(intent);
                 break;
+
                 case R.id.logoutBTN:
                     cerrarSesion();
                     break;
+            case R.id.editcuenta:
+                Intent intent2 = new Intent(MainActivity.this,actualizar_perfil_vet.class);
+                startActivity(intent2);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

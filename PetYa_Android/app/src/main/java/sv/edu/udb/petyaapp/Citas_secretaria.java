@@ -146,7 +146,9 @@ public class Citas_secretaria extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.horario:
+            case R.id.editcuentasecretaria:
+                Intent intent = new Intent(Citas_secretaria.this,actualizar_perfil_sec.class);
+                startActivity(intent);
                 break;
             case R.id.cita:
 
