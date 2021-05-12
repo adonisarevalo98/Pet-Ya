@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetYaApp"
         android:usesCleartextTraffic="true">
+<<<<<<< HEAD
         <activity android:name=".actualizar_perfil_sec"></activity>
         <activity android:name=".actualizar_perfil_vet" />
+=======
+        <activity android:name=".DiagnosticosVet"></activity>
+>>>>>>> b265957d3888f9e5acb6c7a61dcb0db563411f39
         <activity android:name=".Solicitar_cita_cliente" />
         <activity android:name=".Citas_secretaria" />
         <activity android:name=".Registro" />
