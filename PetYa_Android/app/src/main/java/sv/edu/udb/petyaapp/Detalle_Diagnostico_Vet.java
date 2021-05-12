@@ -141,10 +141,6 @@ public class Detalle_Diagnostico_Vet extends AppCompatActivity implements Naviga
                 Intent intent2 = new Intent(Detalle_Diagnostico_Vet.this, MainActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.horario:
-                Intent intent = new Intent(Detalle_Diagnostico_Vet.this, Vet_mis_horarios.class);
-                startActivity(intent);
-                break;
             case R.id.diagnosticos:
                 Intent intent1 = new Intent(Detalle_Diagnostico_Vet.this, DiagnosticosVet.class);
                 startActivity(intent1);

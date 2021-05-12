@@ -194,16 +194,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.cita:
                 break;
-            case R.id.horario:
-                Intent intent = new Intent(MainActivity.this, Vet_mis_horarios.class);
-                startActivity(intent);
-                break;
+
+
             case R.id.diagnosticos:
                 Intent intent1 = new Intent(MainActivity.this, DiagnosticosVet.class);
                 startActivity(intent1);
                 break;
             case R.id.logoutBTN:
                 cerrarSesion();
+                break;
+            case R.id.editcuenta:
+                Intent intent2 = new Intent(MainActivity.this,actualizar_perfil_vet.class);
+                startActivity(intent2);
+
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

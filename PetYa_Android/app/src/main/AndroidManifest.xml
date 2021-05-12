@@ -12,9 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetYaApp"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".Detalle_Diagnostico_Vet"></activity>
         <activity android:name=".Detalles_Diagnostico" />
         <activity android:name=".DiagnosticosVet" />
+
+        <activity android:name=".actualizar_perfil_sec"></activity>
+        <activity android:name=".actualizar_perfil_vet" />
+
+
         <activity android:name=".Solicitar_cita_cliente" />
         <activity android:name=".Citas_secretaria" />
         <activity android:name=".Registro" />
@@ -27,7 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DiagnosticosCliente" />
-        <activity android:name=".Vet_mis_horarios" />
         <activity android:name=".MainActivity" />
 
         <meta-data

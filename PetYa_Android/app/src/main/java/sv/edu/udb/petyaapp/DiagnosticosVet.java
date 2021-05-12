@@ -198,10 +198,6 @@ public class DiagnosticosVet extends AppCompatActivity implements NavigationView
                 Intent intent1 = new Intent(DiagnosticosVet.this,MainActivity.class);
                 startActivity(intent1);
                 break;
-            case R.id.horario:
-                Intent intent = new Intent(DiagnosticosVet.this,Vet_mis_horarios.class);
-                startActivity(intent);
-                break;
             case R.id.diagnosticos:
 
                 break;
