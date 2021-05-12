@@ -2,16 +2,19 @@ package sv.edu.udb.petyaapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.util.ArrayUtils;
 
 import java.util.ArrayList;
 
+import sv.edu.udb.petyaapp.Edita_citaSecretaria;
 import sv.edu.udb.petyaapp.R;
 import sv.edu.udb.petyaapp.models.CitasSecretaria;
 
@@ -52,12 +55,32 @@ public class CitasSecretariaAdapter extends ArrayAdapter<CitasSecretaria> {
         concat3= "Hora: " + citaList.getHora();
         concat4= "Estado: " + citaList.getEstado();
         concat5= "Encargado: " + citaList.getId_cliente();
-
         textView.setText(concat);
         textView1.setText(concat1);
         textView2.setText(concat3);
         textView3.setText(concat4);
         textView4.setText(concat5);
+
+        //Cuando mantenga presionado un registro, lo mandara a la otra actividad
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent4 = new Intent(context, Edita_citaSecretaria.class);
+                intent4.putExtra("idcita",citaList.getId());
+                intent4.putExtra("idCliente",citaList.getId_cliente());
+                intent4.putExtra("mascota",citaList.getNombre_mascota());
+                intent4.putExtra("especie",citaList.getEspecie());
+                intent4.putExtra("raza",citaList.getRaza());
+                intent4.putExtra("motivo",citaList.getMotivo());
+                intent4.putExtra("fecha",citaList.getFecha_cita());
+                intent4.putExtra("hora",citaList.getHora());
+                intent4.putExtra("accion","e");
+
+                context.startActivity(intent4);
+                return true;
+            }
+        });
+
         return convertView;
     }
 

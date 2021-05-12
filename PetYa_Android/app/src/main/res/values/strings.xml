@@ -53,6 +53,9 @@
     <string name="color">Color</string>
     <string name="motivo_citas">Motivo de la cita</string>
     <string name="registrar">Registrar</string>
+    <string name="peso">Peso</string>
+    <string name="pulso">Pulso</string>
+    <string name="temperatura">Temperatura</string>
 
     <!--End Formulario hacer cita-->
 </resources>
