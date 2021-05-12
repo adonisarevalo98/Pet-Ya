@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PetYaApp</string>
+    <string name="app_name">VetYaApp</string>
     <!--perfil veterinario-->
     <string name="citas">Citas</string>
     <string name="horarios">Horarios</string>
@@ -7,18 +7,24 @@
     <string name="editarcuenta">Editar cuenta</string>
     <string name="cerrarsesion">Cerrar sesión</string>
     <string name="perfil">Perfil</string>
-    <string name="nombre">Vet. Carlos Canizales</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="actualizar">Actualizar</string>
+
     <!--end perfil veterinario-->
     <!--perfil secretaria-->
     <string name="nombre_secretaria">Sec. María Escobar</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
 
+
     <!--end perfil secretaria-->
     <!--perfil cliente-->
     <string name="solicitar_cita">Solicitar cita</string>
     <string name="nombre_cliente">Roberto Martínez</string>
     <string name="historial_cliente_citas">Historial de citas</string>
+    <string name="diagn">Diagnostico</string>
+
     <!--end perfil cliente-->
     <!--Navigation-->
     <string name="navigation_drawer_open">Abrir drawer de navegacion</string>

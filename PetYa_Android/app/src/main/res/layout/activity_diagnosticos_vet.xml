@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".DiagnosticosCliente"
+    tools:context=".DiagnosticosVet"
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
@@ -15,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/header_cliente"
-        app:menu="@menu/menu_cliente" />
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu_veterinario" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,9 +36,10 @@
             android:layout_marginTop="50dp">
 
             <ListView
-                android:id="@+id/list_view_diagnostico_cliente"
+                android:id="@+id/list_view_diagnostico_vet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -10,9 +10,11 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 import sv.edu.udb.petyaapp.models.Clientes;
 import sv.edu.udb.petyaapp.models.Empleados;
+import sv.edu.udb.petyaapp.models.RespEmpleado;
 
 public interface EmpleadoService {
     //metodo get para listar todos los empleados
@@ -29,12 +31,13 @@ public interface EmpleadoService {
     );
 
     //metodo put para actualizar
-    @PUT("petya-empleados")
+    @POST("petya-empleados-update")
     Call<Empleados> updateEmpleados(
-            @Url String url, @Body Clientes clientes
+            @Body Empleados empleados
+
     );
 
     //metodo delete para eliminar
     @DELETE("petya-empleados")
-    Call<Empleados> deleteEmpleados(@Url String url);
+    Call<RespEmpleado> deleteEmpleados(@Url String url);
 }

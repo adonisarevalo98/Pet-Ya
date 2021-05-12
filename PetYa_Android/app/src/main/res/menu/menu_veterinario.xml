@@ -6,10 +6,6 @@
             android:icon="@drawable/cita_icon"
             android:title="@string/citas" />
         <item
-            android:id="@+id/horario"
-            android:icon="@drawable/schedule_icon"
-            android:title="@string/horarios" />
-        <item
             android:id="@+id/diagnosticos"
             android:icon="@drawable/diagnosticos"
             android:title="@string/diagnosticos" />
