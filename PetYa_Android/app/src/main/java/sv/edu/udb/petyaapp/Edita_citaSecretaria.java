@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,16 +30,44 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import sv.edu.udb.petyaapp.config.Config;
+import sv.edu.udb.petyaapp.interfaces.EmpleadoService;
+import sv.edu.udb.petyaapp.interfaces.FormCitaService;
+import sv.edu.udb.petyaapp.models.CitasSecretaria;
+import sv.edu.udb.petyaapp.models.Empleados;
+
 public class Edita_citaSecretaria extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     //Variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
 
+    //Variables para almacenar datos recibidos
+    int idCita = 0;
+    //demas variables
+    String hora="";
+    String edad ="";
+    String sexo="";
+    String color="";
+    String vacunacion="";
+    String estado = "proceso";
+    int idEmpleado=0;
+    String peso ="";
+    String pulso="";
+    String temperatura="";
+    int idCLiente=0;
+    String  clienteUid = "";
+
+    //Llamando al servicio de formcita para actualizar el registro
+    private FormCitaService formCitaservicio = Config.getRetrofit().create(FormCitaService.class);
+
 
     TextInputEditText textInputEditTextIdCita, textInputEditTextCliente, textInputEditTextUID, txtEDTFecha, txtEDTNombre, txtEDTEdad, txtEDTEspecie, txtEDTRaza, txtEDTMotivo, textEDTPeso, textEDTPulso, textEDTTemperatura;
-    Button btnRegistro;
-    String[] sexo = {"Macho", "Hembra"};
+    Button btnActualizarC;
+
 
     //Variable para gestionar FirebaseAuth
     private FirebaseAuth mAuth;
@@ -87,7 +116,7 @@ public class Edita_citaSecretaria extends AppCompatActivity implements Navigatio
         textEDTTemperatura = findViewById(R.id.edttemperatura);
 
 
-        btnRegistro = findViewById(R.id.registroBTN);
+        btnActualizarC = findViewById(R.id.actualizarBTN);
 
         //obtenemos los valores que fueron enviados
         inicializaInterface();
@@ -111,6 +140,14 @@ public class Edita_citaSecretaria extends AppCompatActivity implements Navigatio
        // navigationView.setCheckedItem(R.id.citasecretaria);  //item seleccionado por defecto
         /*******End Menu********/
 
+        /***accion del boton Actualizar **/
+        btnActualizarC.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                actualizarC();
+            }
+        });
+
     }
 
 
@@ -123,6 +160,19 @@ public class Edita_citaSecretaria extends AppCompatActivity implements Navigatio
         txtEDTRaza.setText(datosParam.getString("raza"));
         txtEDTMotivo.setText(datosParam.getString("motivo"));
         txtEDTFecha.setText(datosParam.getString("fecha"));
+
+
+
+        //llenando variables
+        idCita = datosParam.getInt("idcita");
+        hora = datosParam.getString("hora");
+        edad = datosParam.getString("edad");
+        sexo = datosParam.getString("sexo");
+        color = "";
+        vacunacion = "";
+        idEmpleado = datosParam.getInt("id_empleado");
+        idCLiente = datosParam.getInt("idCliente");
+        clienteUid = datosParam.getString("cliente_uid");
     }
 
 
@@ -143,8 +193,7 @@ public class Edita_citaSecretaria extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.horario:
-                break;
+
             case R.id.cita:
 
                 break;
@@ -181,5 +230,52 @@ public class Edita_citaSecretaria extends AppCompatActivity implements Navigatio
             Intent perfilusuario = new Intent(Edita_citaSecretaria.this, Login.class);
             startActivity(perfilusuario);
         } super.onStart(); }
+
+        //metodo para actualizar cita por un usuario secretaria
+        private void actualizarC(){
+            peso =textEDTPeso.getText().toString();
+            pulso=textEDTPulso.getText().toString();
+            temperatura=textEDTTemperatura.getText().toString();
+
+            //validando que los campos no esten vacios
+            if (TextUtils.isEmpty(peso)){
+                Toast.makeText(getApplicationContext(), "Debe ingresar el peso", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (TextUtils.isEmpty(pulso)){
+                Toast.makeText(getApplicationContext(), "Debe ingresar el pulso", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (TextUtils.isEmpty(temperatura)){
+                Toast.makeText(getApplicationContext(), "Debe ingresar la temperatura", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            //realizando actualizacion
+            CitasSecretaria datos_cita = new CitasSecretaria(idCita,txtEDTEspecie.getText().toString(),txtEDTEspecie.getText().toString(),edad,sexo,txtEDTMotivo.getText().toString(),peso,pulso,temperatura,txtEDTNombre.getText().toString(),txtEDTFecha.getText().toString(),hora,estado,idCLiente,color,vacunacion,idEmpleado,clienteUid);
+            Call<CitasSecretaria> call = formCitaservicio.updateCitas(datos_cita);
+            call.enqueue(new Callback<CitasSecretaria>() {
+                @Override
+                public void onResponse(Call<CitasSecretaria> call, Response<CitasSecretaria> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getBaseContext(),"Error:"+response.code(),Toast.LENGTH_LONG).show();
+
+                    }else{
+                        Toast.makeText(getBaseContext(),"Actualizado con éxito",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Edita_citaSecretaria.this,Citas_secretaria.class);
+                        startActivity(intent);
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<CitasSecretaria> call, Throwable t) {
+                    Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
+                    System.out.println(t.getMessage());
+                    System.out.println(String.valueOf(idCita));
+                }
+            });
+        }
 
 }

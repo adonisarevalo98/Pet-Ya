@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Edita_citaSecretaria"
+    tools:context=".Realiza_Diagnostico"
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header_secretaria"
-        app:menu="@menu/menu_secretaria" />
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu_veterinario"
+        android:layout_gravity="start"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,25 +64,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/idCitaLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/idCita"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:enabled="false"
-                        >
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fecha"
@@ -124,10 +105,6 @@
                     </com.google.android.material.textfield.TextInputEditText>
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -185,6 +162,82 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/horaLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Hora"
+                    android:textColorHint="@color/gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/hora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edadlayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edad"
+                    android:textColorHint="@color/gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sexoLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/sexo"
+                    android:textColorHint="@color/gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sexo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/vacunaLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/vacunacion"
+                    android:textColorHint="@color/gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vacunacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -196,6 +249,7 @@
                         android:id="@+id/edtpeso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         >
 
                     </com.google.android.material.textfield.TextInputEditText>
@@ -207,13 +261,13 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/pulso"
                     android:textColorHint="@color/gray"
-
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtpulso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         >
 
                     </com.google.android.material.textfield.TextInputEditText>
@@ -226,11 +280,46 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/temperatura"
                     android:textColorHint="@color/gray"
-
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edttemperatura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/diagnostico"
+                    android:textColorHint="@color/gray"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/diagnostico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tratamiento"
+                    android:textColorHint="@color/gray"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tratamiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         >
@@ -239,14 +328,13 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <Button
                     android:id="@+id/actualizarBTN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/actCitaSecretaria"
+                    android:text="@string/ReaDiagno"
                     android:textColor="@color/white" />
 
 

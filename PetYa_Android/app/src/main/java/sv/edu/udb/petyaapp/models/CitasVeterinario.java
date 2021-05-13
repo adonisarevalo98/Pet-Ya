@@ -18,6 +18,48 @@ public class CitasVeterinario {
     @SerializedName("cliente_id")
     public int cliente_id;
 
+    //Atributos agregado por quevedo para hacer diagnostico
+    @SerializedName("id")
+    public int id;
+
+    @SerializedName("especie")
+    public String especie;
+
+    @SerializedName("raza")
+    public String raza;
+
+    @SerializedName("edad")
+    public String edad;
+
+    @SerializedName("sexo")
+    public String sexo;
+
+    @SerializedName("color")
+    public String color;
+
+    @SerializedName("vacunacion")
+    public String vacunacion;
+
+    @SerializedName("id_empleado")
+    public int idEmpleado;
+
+    @SerializedName("cliente_uid")
+    public String clienteUid;
+
+    @SerializedName("motivo")
+    public String motivo;
+
+    @SerializedName("peso")
+    public String peso;
+
+    @SerializedName("pulso")
+    public String pulso;
+
+    @SerializedName("temperatura")
+    public String temperatura;
+
+
+
     //@SerializedName("id_empleado")
     //public int id_empleado;
 
@@ -41,7 +83,59 @@ public class CitasVeterinario {
         return cliente_id;
     }
 
-   // public int getId_empleado() {
+    public int getId() {
+        return id;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getVacunacion() {
+        return vacunacion;
+    }
+
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public String getClienteUid() {
+        return clienteUid;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public String getPulso() {
+        return pulso;
+    }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
+    // public int getId_empleado() {
       //  return id_empleado;
     //}
 

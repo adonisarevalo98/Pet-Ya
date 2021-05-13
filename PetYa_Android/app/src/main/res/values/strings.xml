@@ -62,6 +62,10 @@
     <string name="peso">Peso</string>
     <string name="pulso">Pulso</string>
     <string name="temperatura">Temperatura</string>
+    <string name="actCitaSecretaria">Actualizar</string>
+    <string name="diagnostico">Diagnostico final</string>
+    <string name="tratamiento">Tratamiento</string>
+    <string name="ReaDiagno">Realizar diagnostico</string>
 
     <!--End Formulario hacer cita-->
 </resources>

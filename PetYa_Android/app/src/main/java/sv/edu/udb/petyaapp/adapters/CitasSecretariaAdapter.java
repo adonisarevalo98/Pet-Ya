@@ -74,8 +74,15 @@ public class CitasSecretariaAdapter extends ArrayAdapter<CitasSecretaria> {
                 intent4.putExtra("motivo",citaList.getMotivo());
                 intent4.putExtra("fecha",citaList.getFecha_cita());
                 intent4.putExtra("hora",citaList.getHora());
+                intent4.putExtra("edad",citaList.getEdad());
+                intent4.putExtra("sexo",citaList.getSexo());
+                intent4.putExtra("hora",citaList.getHora());
+                intent4.putExtra("color",citaList.getColor());
+                intent4.putExtra("vacuna",citaList.getVacunacion());
+                intent4.putExtra("id_empleado",citaList.getIdEmpleado());
+                intent4.putExtra("cliente_uid",citaList.getClienteUid());
                 intent4.putExtra("accion","e");
-
+                intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent4);
                 return true;
             }
