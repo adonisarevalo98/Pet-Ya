@@ -149,6 +149,10 @@ public class actualizar_perfil_vet extends AppCompatActivity implements Navigati
                 Intent intent = new Intent(actualizar_perfil_vet.this,MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.diagnosticos:
+                Intent intent1 = new Intent(actualizar_perfil_vet.this, DiagnosticosVet.class);
+                startActivity(intent1);
+                break;
             case R.id.editcuenta:
 
                 break;

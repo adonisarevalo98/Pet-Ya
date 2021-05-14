@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,8 +35,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,6 +117,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             txtEDTRaza = findViewById(R.id.raza);
             txtEDTMotivo = findViewById(R.id.motivo_cita);
 
+
             btnRegistro = findViewById(R.id.registroBTN);
 
             /******Llenando el combobox/autocompletetextview con la lista de los empleados******/
@@ -118,6 +125,8 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             /******Capturando el correo del usuario en sesion para obtener su id******/
             idCliente(currentUser);
 
+            /*****ASIGNANDO ID POR DEFECTO******/
+            textInputEditTextCliente.setText("1");
 
 
             //Colocando correo e imagen en el header del perfil:
@@ -130,7 +139,6 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             if(currentUser.getPhotoUrl()!=null){
                 Glide.with(this).load(currentUser.getPhotoUrl()).into(imagenUser);
             }
-
 
             //toolbar
             setSupportActionBar(toolbar);
@@ -222,6 +230,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             }
         });
 
+
     }
 
     /***OBTENIENDO EL LISTADO DE HORARIOS EN BASE AL ID DEL EMPLEADO****/
@@ -286,6 +295,8 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
                 }
                 textInputEditTextUID.setText(currentUser.getUid());
 
+
+                //Toast.makeText(getBaseContext(), "FECHA ACTUAL: " + fecha_actual, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -293,6 +304,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
                 Toast.makeText(getBaseContext(),"Error:"+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     /*****BTN AÑADIR******/
@@ -319,6 +331,16 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             Toast.makeText(getBaseContext(),"Falta por ingresar una fecha" ,Toast.LENGTH_LONG).show();
             return;
         }
+        String fecha = "^\\d{4}-\\d{2}-\\d{2}$";
+        Pattern pattern = Pattern.compile(fecha);
+
+        if(!pattern.matcher(fecha_cita.trim()).matches()){
+            Toast.makeText(getBaseContext(),"El formato ingresado para la fecha es incorrecto" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+
         if(TextUtils.isEmpty(hora_cita)){
             Toast.makeText(getBaseContext(),"Falta por seleccionar un intervalo de hora" ,Toast.LENGTH_LONG).show();
             return;
@@ -327,10 +349,22 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             Toast.makeText(getBaseContext(),"Falta por ingresar el nombre de la mascota" ,Toast.LENGTH_LONG).show();
             return;
         }
+
+
+
         if(TextUtils.isEmpty(edad)){
             Toast.makeText(getBaseContext(),"Falta por ingresar una edad" ,Toast.LENGTH_LONG).show();
             return;
         }
+
+        String formato_edad = "^\\d{1,2}\\s(Años|años|Año|año|Meses|meses|Mes|mes|Semanas|semanas|Dias|dias)$";
+        Pattern pattern2 = Pattern.compile(formato_edad);
+        if(!pattern2.matcher(edad).matches()){
+            Toast.makeText(getBaseContext(),"El formato ingresado para la edad es incorrecto o incompleto" ,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         if(TextUtils.isEmpty(sexo)){
             Toast.makeText(getBaseContext(),"Falta por seleccionar el sexo de su mascota" ,Toast.LENGTH_LONG).show();
             return;
@@ -340,6 +374,7 @@ public class Solicitar_cita_cliente extends AppCompatActivity implements Navigat
             return;
         }
         if(TextUtils.isEmpty(raza)){
+            /*^\d{4}-\d{2}-\d{2}$*/
             Toast.makeText(getBaseContext(),"Falta por ingresar la raza de su mascota" ,Toast.LENGTH_LONG).show();
             return;
         }
